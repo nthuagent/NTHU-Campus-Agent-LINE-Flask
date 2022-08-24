@@ -19,6 +19,13 @@ spec:
       - image: gcr.io/${PROJECT_ID}/nthu-line-flask:latest
         imagePullPolicy: Always
         name: nthu-line-flask
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "512Mi"
+            cpu: "250m"
         ports:
         - containerPort: 5000
         
