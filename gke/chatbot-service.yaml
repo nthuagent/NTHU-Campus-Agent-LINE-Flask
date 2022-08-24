@@ -10,7 +10,7 @@ metadata:
 spec:
   ports:
   - nodePort: 32422
-    port: 2053
+    port: 80
     targetPort: 5000
     protocol: TCP
   selector:
