@@ -5,4 +5,4 @@ metadata:
 spec:
  backend:
    serviceName: chatbot-service
-   servicePort: 2053
+   servicePort: 80
