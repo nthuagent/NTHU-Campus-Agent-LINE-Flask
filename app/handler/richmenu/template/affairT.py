@@ -6,16 +6,6 @@ def affair_info_carousel():
         template = CarouselTemplate(  
             columns = [
                 CarouselColumn(
-                    title = '2021清華新生領航營',
-                    text = '點擊下方按鈕，即可註冊與進入2021清華新生領航營專區！',
-                    actions = [
-                        MessageTemplateAction(
-                            label='進入2021清華新生領航營',
-                            text='[選單]2021清華新生領航營'
-                        )
-                    ]
-                ),
-                CarouselColumn(
                     title = '校園電話查詢',
                     text = '點擊「查詢電話」輸入校園單位，本汪可以直接告訴你喔！',
                     actions = [
