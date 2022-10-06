@@ -5,8 +5,8 @@ metadata:
     app: chatbot
   name: chatbot-service
   namespace: default
-  annotations:
-    cloud.google.com/neg: '{"ingress": true}'
+  # annotations:
+  #   cloud.google.com/neg: '{"ingress": true}'
 spec:
   ports:
   - nodePort: 32422
@@ -15,4 +15,4 @@ spec:
     protocol: TCP
   selector:
     app: chatbot
-  type: LoadBalancer
+  type: NodePort
