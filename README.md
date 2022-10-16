@@ -42,3 +42,6 @@ Please refer to **Dockerfile** and **gke folder**
 
 Developed by **Jenson Su** & **Jonathan Wu**
 
+# Code Location
+Bus templates:
+/blob/master/app/handler/richmenu/template/busT.py
