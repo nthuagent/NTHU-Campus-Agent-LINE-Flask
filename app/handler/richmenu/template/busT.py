@@ -7,15 +7,15 @@ def main_campus_bus_img(): #校本部公車
     template_list = []
 
     img_1_template = ImageSendMessage(
-        original_content_url='https://i.imgur.com/wG0w8QR.jpg', 
-        preview_image_url='https://i.imgur.com/wG0w8QR.jpg'
+        original_content_url='https://affairs.site.nthu.edu.tw/var/file/165/1165/img/189694360.jpg', 
+        preview_image_url='https://affairs.site.nthu.edu.tw/var/file/165/1165/img/189694360.jpg'
     )
-    # img_2_template = ImageSendMessage(
-    #     original_content_url='https://i.imgur.com/ACiFM4x.png', 
-    #     preview_image_url='https://i.imgur.com/ACiFM4x.png'
-    # )
+    img_2_template = ImageSendMessage(
+         original_content_url='https://affairs.site.nthu.edu.tw/var/file/165/1165/img/569615308.jpg', 
+         preview_image_url='https://affairs.site.nthu.edu.tw/var/file/165/1165/img/569615308.jpg'
+     )
     template_list.append(img_1_template)
-    # template_list.append(img_2_template)
+    template_list.append(img_2_template)
 
     return template_list
 
@@ -23,16 +23,16 @@ def minor_campus_bus_img(): #南大專車
     template_list = []
 
     img_1_template = ImageSendMessage(
-        original_content_url='https://i.imgur.com/5EGMffM.jpg', 
-        preview_image_url='https://i.imgur.com/5EGMffM.jpg'
+        original_content_url='https://affairs.site.nthu.edu.tw/var/file/165/1165/img/625331977.jpg', 
+        preview_image_url='https://affairs.site.nthu.edu.tw/var/file/165/1165/img/625331977.jpg'
     )
-    # img_2_template = ImageSendMessage(
-    #     original_content_url='https://i.imgur.com/2JTOjMK.png', 
-    #     preview_image_url='https://i.imgur.com/2JTOjMK.png'
-    # )
+    img_2_template = ImageSendMessage(
+        original_content_url='https://affairs.site.nthu.edu.tw/var/file/165/1165/img/310880898.jpg', 
+        preview_image_url='https://affairs.site.nthu.edu.tw/var/file/165/1165/img/310880898.jpg'
+    )
 
     template_list.append(img_1_template)
-    # template_list.append(img_2_template)
+    template_list.append(img_2_template)
 
     return template_list
 
@@ -42,8 +42,8 @@ def et_bus_img(): #83路線公車
     text_template = TextSendMessage(text="清華大學校內各站(含清大北校門、第二綜合大樓、生科館/人社院、台積館)不開放校外人下車，乘客如持清大證件可以下車。")
 
     img_1_template = ImageSendMessage(
-        original_content_url='https://i.imgur.com/hARN9Y5.png', 
-        preview_image_url='https://i.imgur.com/hARN9Y5.png'
+        original_content_url='https://affairs.site.nthu.edu.tw/var/file/165/1165/img/606130559.jpg', 
+        preview_image_url='https://affairs.site.nthu.edu.tw/var/file/165/1165/img/606130559.jpg'
     )
 
     template_list.append(text_template)
@@ -61,7 +61,7 @@ def bus_route_template(): #公車路線清單
             actions=[
                 URITemplateAction(
                     label='公車資訊公告',
-                    uri='http://affairs.site.nthu.edu.tw/p/406-1165-206830,r1065.php?Lang=zh-tw'
+                    uri='https://affairs.site.nthu.edu.tw/p/403-1165-1065-1.php?Lang=zh-tw'
                 ),
                 PostbackTemplateAction(
                     label='校本部公車',
