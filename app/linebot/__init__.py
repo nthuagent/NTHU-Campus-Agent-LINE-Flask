@@ -8,20 +8,20 @@ mode = 'official' # 只要改這個模式就好
 # token, webhook, _ = t.getAuth(mode)
 
 # official:
-# token = "os.environ['LINE_OFFICIAL_TOKEN']"
-# webhook = "os.environ['LINE_WEBHOOK_STRING']"
+token = os.environ['line-official-token']
+webhook = os.environ['line-webhook-string']
 
 # beta:
 # token = 'BETA_TOKEN'
 # webhook = 'WEBHOOK_STRING'
 
-# print('token:', token)
-# print('webhook:', webhook)
+print('token:', token)
+print('webhook:', webhook)
 
 
 # Beta Chatbot
-line_bot_api = LineBotApi(os.environ['LINE_OFFICIAL_TOKEN'])
-handler = WebhookHandler(os.environ['LINE_WEBHOOK_STRING'])
+line_bot_api = LineBotApi(token)
+handler = WebhookHandler(webhook)
 
 # user instance
 user = UserAPI()
