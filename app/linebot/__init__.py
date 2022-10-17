@@ -8,8 +8,8 @@ mode = 'official' # 只要改這個模式就好
 # token, webhook, _ = t.getAuth(mode)
 
 # official:
-token = os.environ['line-official-token']
-webhook = os.environ['line-webhook-string']
+token = os.getenv('line-official-token', None)
+webhook = os.getenv('line-webhook-string', None)
 
 # beta:
 # token = 'BETA_TOKEN'
