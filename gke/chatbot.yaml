@@ -29,12 +29,12 @@ spec:
         ports:
         - containerPort: 5000
         env:
-            - name: line-official-token 
+            - name: LINE_OFFICIAL_TOKEN 
               valueFrom: 
                 secretKeyRef:
                   name: line-official-token # kubernetes secret
                   key: password
-            - name: line-webhook-string 
+            - name: LINE_WEBHOOK_STRING 
               valueFrom: 
                 secretKeyRef:
                   name: line-webhook-string # kubernetes secret
