@@ -28,4 +28,14 @@ spec:
             cpu: "250m"
         ports:
         - containerPort: 5000
-        
+        env:
+            - name: LINE_OFFICIAL_TOKEN 
+              valueFrom: 
+                secretKeyRef:
+                  name: line-official-token # kubernetes secret
+                  key: password
+            - name: LINE_WEBHOOK_STRING 
+              valueFrom: 
+                secretKeyRef:
+                  name: line-webhook-string # kubernetes secret
+                  key: password
