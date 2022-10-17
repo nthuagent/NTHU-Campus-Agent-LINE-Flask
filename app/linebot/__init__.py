@@ -1,3 +1,4 @@
+import os 
 from linebot import LineBotApi, WebhookHandler
 from API import TokenAPI, UserAPI
 
@@ -8,8 +9,8 @@ mode = 'official' # 只要改這個模式就好
 # token, webhook, _ = t.getAuth(mode)
 
 # official:
-token = os.getenv('line-official-token', None)
-webhook = os.getenv('line-webhook-string', None)
+token = os.getenv('line-official-token')
+webhook = os.getenv('line-webhook-string')
 
 # beta:
 # token = 'BETA_TOKEN'
