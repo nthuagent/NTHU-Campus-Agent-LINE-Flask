@@ -1,6 +1,7 @@
 from linebot.models import *
 
 def intro_carousel():
+    # invoked by `!` command
     carousel_template = TemplateSendMessage(        
         alt_text = '下指令給狗狗情報員',
         template = CarouselTemplate(  
@@ -45,16 +46,6 @@ def intro_carousel():
                         )
                     ]
                 ),
-                CarouselColumn(
-                    title = '2020清大新生領航營',
-                    text = '點我入新生領航營',
-                    actions = [
-                        MessageTemplateAction(
-                            label='點我進入',
-                            text='!新生領航營'
-                        )
-                    ]
-                )
             ]
         )
     )
@@ -80,6 +71,7 @@ def intro_carousel():
 #     return QuickReply_text_message
 
 def share_template():
+    # ! -> 分享給好友
     bubble_json = '''
     {{
         "type": "bubble",
