@@ -43,9 +43,11 @@ class CmdHandler:
             em = self.extract_msg(msg)
 
             if em == "笑一下":
+                # 從 API 拉笑話出來回傳
                 andx = AndxAPI()
                 anecdote, err = andx.getOne()
                 if err:
+                    # 沒笑話
                     self.line_bot_api.reply_message(reply_token, AndxTemplate.none_anecdote())
                     print(err)
                 else:
