@@ -36,23 +36,16 @@ def affair_info_carousel():
                     ]
                 ),
                 CarouselColumn(
-                    title = '109學年度第1學期行事曆',
-                    text = '點擊「點我進入」開啟行事曆',
+                    title = '111學年度行事曆',
+                    text = '點擊「語言版本」開啟行事曆',
                     actions = [
                         URIAction(
-                            label = '點我進入',
-                            uri = 'https://reurl.cc/7yV3gD'
-
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    title = '簡易選課系統',
-                    text = '點擊「點我進入」進入簡易選課系統',
-                    actions = [
+                            label = '中文版本',
+                            uri = 'https://nthuagent.pages.dev/calendar/111/zh.pdf'
+                        ),
                         URIAction(
-                            label = '點我進入',
-                            uri = 'https://nthu-courses.github.io/#/'
+                            label = 'English Version',
+                            uri = 'https://nthuagent.pages.dev/calendar/111/en.pdf'
                         )
                     ]
                 )
