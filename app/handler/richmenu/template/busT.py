@@ -7,12 +7,12 @@ def main_campus_bus_img(): #校本部公車
     template_list = []
 
     img_1_template = ImageSendMessage(
-        original_content_url='https://nthubusimage.pages.dev/maincampus/1.jpg', 
-        preview_image_url='https://nthubusimage.pages.dev/maincampus/1.jpg'
+        original_content_url='https://nthuagent.pages.dev/maincampus/1.jpg', 
+        preview_image_url='https://nthuagent.pages.dev/maincampus/1.jpg'
     )
     img_2_template = ImageSendMessage(
-         original_content_url='https://nthubusimage.pages.dev/maincampus/2.jpg', 
-         preview_image_url='https://nthubusimage.pages.dev/maincampus/2.jpg'
+         original_content_url='https://nthuagent.pages.dev/maincampus/2.jpg', 
+         preview_image_url='https://nthuagent.pages.dev/maincampus/2.jpg'
      )
     template_list.append(img_1_template)
     template_list.append(img_2_template)
@@ -23,12 +23,12 @@ def minor_campus_bus_img(): #南大專車
     template_list = []
 
     img_1_template = ImageSendMessage(
-        original_content_url='https://nthubusimage.pages.dev/nanda/1.jpg', 
-        preview_image_url='https://nthubusimage.pages.dev/nanda/1.jpg'
+        original_content_url='https://nthuagent.pages.dev/nanda/1.jpg', 
+        preview_image_url='https://nthuagent.pages.dev/nanda/1.jpg'
     )
     img_2_template = ImageSendMessage(
-        original_content_url='https://nthubusimage.pages.dev/nanda/2.jpg', 
-        preview_image_url='https://nthubusimage.pages.dev/nanda/2.jpg'
+        original_content_url='https://nthuagent.pages.dev/nanda/2.jpg', 
+        preview_image_url='https://nthuagent.pages.dev/nanda/2.jpg'
     )
 
     template_list.append(img_1_template)
@@ -42,8 +42,8 @@ def et_bus_img(): #83路線公車
     text_template = TextSendMessage(text="清華大學校內各站(含清大北校門、第二綜合大樓、生科館/人社院、台積館)不開放校外人下車，乘客如持清大證件可以下車。")
 
     img_1_template = ImageSendMessage(
-        original_content_url='https://nthubusimage.pages.dev/83/1.jpg', 
-        preview_image_url='https://nthubusimage.pages.dev/83/1.jpg'
+        original_content_url='https://nthuagent.pages.dev/83/1.jpg', 
+        preview_image_url='https://nthuagent.pages.dev/83/1.jpg'
     )
 
     template_list.append(text_template)
