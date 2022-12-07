@@ -37,16 +37,16 @@ def affair_info_carousel():
                 ),
                 CarouselColumn(
                     title = '111學年度行事曆',
-                    text = '點擊「語言版本」開啟行事曆',
+                    text = '點擊「最新版本」開啟行事曆',
                     actions = [
                         URIAction(
-                            label = '中文版本',
+                            label = '最新版本',
                             uri = 'https://nthuagent.pages.dev/calendar/111/zh.pdf'
-                        ),
-                        URIAction(
-                            label = 'English Version',
-                            uri = 'https://nthuagent.pages.dev/calendar/111/en.pdf'
                         )
+#                        URIAction(
+#                            label = 'English Version',
+#                            uri = 'https://nthuagent.pages.dev/calendar/111/en.pdf'
+#                        )
                     ]
                 )
             ]
