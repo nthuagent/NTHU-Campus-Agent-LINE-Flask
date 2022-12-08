@@ -1,3 +1,15 @@
+'''
+查詢校園電話簿。
+它包含了三個類別：Phone_Engine、DataAPI和PhoneAPI。
+Phone_Engine類別中包含了一些函式，用於處理查詢的流程。
+DataAPI和PhoneAPI則是用於從資料庫中讀取資料的類別。
+phone_list_loader函式則是用於讀取電話簿資料的輔助函式。
+程式碼執行流程如下：
+使用者輸入查詢的資訊，如「清華大學校長室電話」。
+透過Phone_Engine類別的match_ans函式，與電話簿資料進行比對。
+如果比對到答案，則回傳相對應的電話號碼；如果沒有比對到答案，則回傳預設的錯誤訊息。
+'''
+
 from fuzzywuzzy import fuzz, process
 
 from qa_engine.loader import phone_list_loader
