@@ -16,18 +16,21 @@ spec:
         app: chatbot
     spec:
       containers:
-      - image: gcr.io/${PROJECT_ID}/nthu-line-flask:latest
+      - image: gcr.io/nthu-chatbot/github.com/nthuagent/nthu-campus-agent-line-flask
         imagePullPolicy: Always
         name: nthu-line-flask
-        resources:
-          requests:
-            memory: "512Mi"
-            cpu: "250m"
-          limits:
-            memory: "512Mi"
-            cpu: "250m"
         ports:
         - containerPort: 5000
+          protocol: TCP
+        resources:
+          requests:
+            cpu: "250m"
+            ephemeral-storage: 1Gi
+            memory: "512Mi"
+          limits:
+            cpu: "250m"
+            ephemeral-storage: 1Gi
+            memory: "512Mi"
         env:
             - name: LINE_OFFICIAL_TOKEN 
               valueFrom: 
@@ -63,3 +66,21 @@ spec:
   selector:
     app: chatbot
   type: NodePort
+---
+apiVersion: autoscaling/v2beta1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: chatbot
+  namespace: default
+spec:
+  maxReplicas: 2
+  metrics:
+    - resource:
+        name: cpu
+        targetAverageUtilization: 80
+      type: Resource
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: chatbot
