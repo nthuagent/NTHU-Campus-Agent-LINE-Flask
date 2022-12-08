@@ -39,3 +39,8 @@ spec:
                 secretKeyRef:
                   name: line-webhook-string # kubernetes secret
                   key: password
+            - name: GINIP
+              valueFrom:
+                configMapKeyRef:
+                  name: gin-config
+                  key: ginip
