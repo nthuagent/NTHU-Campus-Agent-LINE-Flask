@@ -1,3 +1,10 @@
+'''
+1. 獲取用戶的 user_id
+2. 使用 user API 將用戶 user_id 插入到資料庫中
+3. 向新用戶發送歡迎訊息
+4. 此處也使用了 LineBotHandler 來處理 FollowEvent 事件。
+'''
+
 from linebot.models import *
 from app import app
 from app.linebot import line_bot_api, handler, user

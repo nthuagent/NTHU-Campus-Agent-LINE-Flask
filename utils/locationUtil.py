@@ -1,3 +1,9 @@
+'''
+這段程式碼用來在 Line Bot 中用來產生快速回覆按鈕。
+函數接受一個地點名稱的列表作為輸入，並隨機挑選一些地點名稱補齊至 10 個，然後將這些地點名稱轉換成快速回覆按鈕並返回。
+這些按鈕可以在 Line Bot 中使用，讓使用者選擇輸入地點名稱。
+'''
+
 from linebot.models import *
 from random import choice
 

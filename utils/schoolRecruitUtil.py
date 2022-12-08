@@ -1,3 +1,7 @@
+'''
+工讀機會查看。這段程式碼會從指定的網站爬取資料，並將爬取到的資料存入 data 這個清單中。
+'''
+
 import requests
 import urllib3
 from pyquery import PyQuery
