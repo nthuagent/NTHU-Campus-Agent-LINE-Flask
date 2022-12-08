@@ -32,21 +32,23 @@ spec:
             ephemeral-storage: 1Gi
             memory: "512Mi"
         env:
-            - name: LINE_OFFICIAL_TOKEN 
-              valueFrom: 
-                secretKeyRef:
-                  name: line-official-token # kubernetes secret
-                  key: password
-            - name: LINE_WEBHOOK_STRING 
-              valueFrom: 
-                secretKeyRef:
-                  name: line-webhook-string # kubernetes secret
-                  key: password
-            - name: GINIP
-              valueFrom:
-                configMapKeyRef:
-                  name: gin-config
-                  key: ginip
+        - name: TZ
+          value: Asia/Taipei
+        - name: GINIP
+          valueFrom:
+            configMapKeyRef:
+              name: gin-config
+              key: ginip
+        - name: LINE_OFFICIAL_TOKEN 
+          valueFrom: 
+            secretKeyRef:
+              name: line-official-token # kubernetes secret
+              key: password
+        - name: LINE_WEBHOOK_STRING 
+          valueFrom: 
+            secretKeyRef:
+              name: line-webhook-string # kubernetes secret
+              key: password
 ---
 apiVersion: v1
 kind: Service
@@ -67,7 +69,7 @@ spec:
     app: chatbot
   type: NodePort
 ---
-apiVersion: autoscaling/v2beta2
+apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   name: chatbot
