@@ -18,6 +18,22 @@
   gunicorn app:app -c ./gunicorn.conf.py
   ~~~
 
+# Env
+            - name: LINE_OFFICIAL_TOKEN 
+              valueFrom: 
+                secretKeyRef:
+                  name: line-official-token # kubernetes secret
+                  key: password
+            - name: LINE_WEBHOOK_STRING 
+              valueFrom: 
+                secretKeyRef:
+                  name: line-webhook-string # kubernetes secret
+                  key: password
+            - name: GINIP
+              valueFrom:
+                configMapKeyRef:
+                  name: gin-config
+                  key: ginip
 
 
 # Feactures
