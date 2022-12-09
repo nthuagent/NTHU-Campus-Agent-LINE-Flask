@@ -18,6 +18,22 @@
   gunicorn app:app -c ./gunicorn.conf.py
   ~~~
 
+# Env
+            - name: LINE_OFFICIAL_TOKEN 
+              valueFrom: 
+                secretKeyRef:
+                  name: line-official-token # kubernetes secret
+                  key: password
+            - name: LINE_WEBHOOK_STRING 
+              valueFrom: 
+                secretKeyRef:
+                  name: line-webhook-string # kubernetes secret
+                  key: password
+            - name: GINIP
+              valueFrom:
+                configMapKeyRef:
+                  name: gin-config
+                  key: ginip
 
 
 # Feactures
@@ -45,3 +61,14 @@ Developed by **Jenson Su** & **Jonathan Wu**
 # Code Location
 Bus templates:
 /blob/master/app/handler/richmenu/template/busT.py
+
+# Flag status
+
+|    Flag status    |   Description    |
+| :---------------: | :--------------: |
+|       init        |    無互動狀態    |
+|    andx_insert    |   處理新增笑話   |
+|      affair       |   處理校務詢問   |
+|     feedback      |   處理問題回饋   |
+| epidemic_feedback | 處理疫情意見回饋 |
+|      mapping      |   處理地圖查詢   |
