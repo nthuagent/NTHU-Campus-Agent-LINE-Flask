@@ -5,29 +5,23 @@
 4. 建立一個 UserAPI 物件，用來提供與使用者相關的操作，例如取得使用者目前的狀態。
 '''
 
-import os 
-from linebot import LineBotApi, WebhookHandler
+import os
 from API import TokenAPI, UserAPI
-
-mode = 'official' # 只要改這個模式就好
+from linebot import LineBotApi, WebhookHandler
 
 # 取得 token & webhook
 # t = TokenAPI()
 # token, webhook, _ = t.getAuth(mode)
 
 # official:
-token = os.getenv('LINE_OFFICIAL_TOKEN')
-webhook = os.getenv('LINE_WEBHOOK_STRING')
+token = os.environ['LINE_OFFICIAL_TOKEN']
+webhook = os.environ['LINE_WEBHOOK_STRING']
 
 # beta:
 # token = 'BETA_TOKEN'
 # webhook = 'WEBHOOK_STRING'
 
-print('token:', token)
-print('webhook:', webhook)
-
-
-# Beta Chatbot
+# Chatbot
 line_bot_api = LineBotApi(token)
 handler = WebhookHandler(webhook)
 

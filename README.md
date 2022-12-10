@@ -2,9 +2,13 @@
 
 > The LINE server which handles users' messages from LINE client based on Python flask
 
-
-
 # Get Stated
+
+* Install Env
+
+  ~~~cmd
+  pip3 install -r requirements.txt
+  ~~~
 
 * Run it in the developing mode
 
@@ -18,7 +22,8 @@
   gunicorn app:app -c ./gunicorn.conf.py
   ~~~
 
-# Env
+*  Kubenetes Env
+  ~~~cmd
             - name: LINE_OFFICIAL_TOKEN 
               valueFrom: 
                 secretKeyRef:
@@ -34,7 +39,7 @@
                 configMapKeyRef:
                   name: gin-config
                   key: ginip
-
+  ~~~
 
 # Feactures
 
@@ -43,24 +48,7 @@ All linebot's event handler is implemented in  `app/linebot`. There are four pro
 1. `callback.py`：Handle all post requests come from `/callback`.
 2. `followEvent.py`：Handle the event that new user add NTHU LINE Chatbot.
 3. `messageEvent.py`：The chatbot core program. Process the message sends by user and will reply proper message to the user.
-
 4. `postbackEvent.py`：Handle the postback event.
-
-
-
-# Docker & Kubernetes
-
-Please refer to **Dockerfile** and **gke folder**
-
-
-
-# License
-
-Developed by **Jenson Su** & **Jonathan Wu**
-
-# Code Location
-Bus templates:
-/blob/master/app/handler/richmenu/template/busT.py
 
 # Flag status
 
@@ -72,3 +60,11 @@ Bus templates:
 |     feedback      |   處理問題回饋   |
 | epidemic_feedback | 處理疫情意見回饋 |
 |      mapping      |   處理地圖查詢   |
+
+# Docker & Kubernetes
+
+Please refer to **Dockerfile** and **gke folder**
+
+# License
+
+Developed by **Jenson Su** & **Jonathan Wu**
