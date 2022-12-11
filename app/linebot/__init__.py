@@ -6,8 +6,11 @@
 '''
 
 import os
+from dotenv import load_dotenv
 from API import TokenAPI, UserAPI
 from linebot import LineBotApi, WebhookHandler
+
+load_dotenv()
 
 # 取得 token & webhook
 # t = TokenAPI()
