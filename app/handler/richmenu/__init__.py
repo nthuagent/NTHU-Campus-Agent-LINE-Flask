@@ -3,13 +3,13 @@ from linebot.models import *
 
 import json
 from app import app
-from API import UserAPI, BusAPI, DataAPI
+from API import UserAPI
 from app.handler.richmenu.template import epidemicT, broadcastT
 
-from modules.affair import affairT, recnewsT, recnewUtil, stopT, phoneT
+from modules.affair import affairT
 from modules.bus import busT
 from modules.funtions import introT
-from modules.map import locationT, mapUtil
+from modules.map import locationT
 from modules.recruitment import recruitmentT, recruitmentUtil
 
 class RichmenuHandler:

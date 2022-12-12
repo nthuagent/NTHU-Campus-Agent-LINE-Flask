@@ -1,13 +1,13 @@
 ''' Chatbot command  '''
 import os
 from modules.affair import qa_engine
-#import openai
-from revChatGPT.revChatGPT import Chatbot
+import openai
+#from revChatGPT.revChatGPT import Chatbot
 from linebot.models import *
 from app import app
 from dotenv import load_dotenv
 load_dotenv()
-'''
+
 def chatGPT(text):
     if text.startswith("!") or text.startswith('！'):
         text = text[1:]
@@ -18,8 +18,6 @@ def chatGPT(text):
        max_tokens= 1200,
        temperature= 0.7
     )
-    app.logger.info("有人問神奇海螺：" + text)
-    app.logger.info("神奇海螺回答：" + ans['choices'][0]['text'].strip())
     return ans['choices'][0]['text'].strip()
 '''
 config = {
@@ -30,7 +28,7 @@ config = {
 }
 
 chatbot = Chatbot(config, conversation_id=None)
-
+'''
 class CmdHandler:
     def __init__(self, line_bot_api, user_instance):
         self.line_bot_api = line_bot_api
@@ -61,13 +59,13 @@ class CmdHandler:
             self.line_bot_api.reply_message(event.reply_token, TextSendMessage(text="在你要打的句子面前加上驚嘆號 (！)，就能召喚神奇海螺囉"))
         # 執行 cmd    
         else:
-            user_message = event.message.text
-            print(user_message)
-            response = chatbot.get_chat_response((user_message), output="text")
-            print(response)
+            # user_message = event.message.text
+            # print(user_message)
+            # response = chatbot.get_chat_response((user_message), output="text")
+            # print(response)
             # Get opengpt's response
-            openai_response = response["message"]
-            self.line_bot_api.reply_message(event.reply_token, TextSendMessage(text=openai_response))
+            # openai_response = response["message"]
+            self.line_bot_api.reply_message(event.reply_token, TextSendMessage(text=chatGPT(event.message.text)))
             
 '''
 usage:

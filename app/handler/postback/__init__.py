@@ -3,13 +3,13 @@ from linebot.models import *
 
 import json
 from app import app
-from API import UserAPI, BusAPI, DataAPI
+from API import AndxAPI, UserAPI, BusAPI, DataAPI
 from app.handler.richmenu.template import epidemicT, broadcastT
 
-from API import AndxAPI
 from modules.affair import affairT, recnewsT, recnewUtil, stopT, phoneT
 from modules.bus import busT
 from modules.funtions import introT
+
 
 class PostbackHandler:
     def __init__(self, line_bot_api, user_instance):

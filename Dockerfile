@@ -1,16 +1,13 @@
-FROM python:3.7-buster
-
+FROM python:3.9-buster
 WORKDIR /usr/src/app
-
-COPY requirements.txt ./
-
-RUN pip3 install -r requirements.txt
 ENV GINIP=${GINIP}
 ENV PORT=${PORT}
 
-EXPOSE 5000
+COPY requirements.txt .
+RUN pip3 install -r requirements.txt
+COPY . ./
 
-COPY . .
+EXPOSE 5000
 
 # CMD ["python", "run.py"]
 CMD ["gunicorn", "app:app", "-c", "./gunicorn.conf.py"]
