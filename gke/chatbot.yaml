@@ -52,7 +52,7 @@ spec:
         - name: OPENAI_TOKEN 
           valueFrom: 
             secretKeyRef:
-              name: openai_token # kubernetes secret
+              name: openai-token # kubernetes secret
               key: password
 ---
 apiVersion: v1

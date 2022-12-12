@@ -122,4 +122,3 @@ class PostbackHandler:
             elif param.get('info') == 'feedback':
                 self.line_bot_api.reply_message(reply_token, TextSendMessage(text='你有什麼意見或問題呢？告訴本汪，盡快為你處理！'))
                 self.user.setFlag(user_id, 'feedback')
-

@@ -39,7 +39,7 @@ def intro_carousel():
                     title = '問題回饋',
                     text = '我跟校園狗狗情報員溝通不良，想要回報問題或提供意見',
                     actions = [
-                        PostbackTemplateAction(
+                        PostbackAction(
                             label='問題回饋',
                             data='source=richmenu&flag=commands&info=feedback'
                         )
@@ -50,6 +50,23 @@ def intro_carousel():
     )
 
     return carousel_template
+
+'''
+                CarouselColumn(
+                    title = '隨機小遊戲',
+                    text = '選擇障礙的人，來看看今天要做什麼吧',
+                    actions = [
+                        MessageAction(
+                            label='今日運勢',
+                            text='運勢'
+                        ),
+                        MessageAction(
+                            label='等等吃什麼',
+                            text='吃什麼'
+                        )
+                    ]
+                ),
+'''
 
 def share_template():
     # ! -> 分享給好友

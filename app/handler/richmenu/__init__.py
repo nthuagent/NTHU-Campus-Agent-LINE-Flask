@@ -2,13 +2,14 @@ from datetime import datetime
 from linebot.models import *
 
 import json
+import random
 from app import app
 from API import UserAPI
 from app.handler.richmenu.template import epidemicT, broadcastT
 
 from modules.affair import affairT
 from modules.bus import busT
-from modules.funtions import introT
+from modules.funtions import introT, toolsT
 from modules.map import locationT
 from modules.recruitment import recruitmentT, recruitmentUtil
 
@@ -67,6 +68,7 @@ class RichmenuHandler:
             reply_arr=[]
             reply_arr.append(affairT.affair_info_carousel())
             reply_arr.append(introT.intro_carousel())
+            reply_arr.append(toolsT.tools_carousel())
             self.line_bot_api.reply_message(reply_token, reply_arr) #神奇海螺先放來這裡
             
         elif em == "校園地圖查詢":
@@ -89,6 +91,13 @@ class RichmenuHandler:
         elif em == "防疫Q&A":
             self.line_bot_api.reply_message(reply_token, epidemicT.qa_info())
             self.user.setFlag(user_id, 'epidemic_qa')
+
+        elif em == "運勢":
+            fortune = random.choice(['超凶', '大凶', '凶', '末吉', '吉','中吉','大吉'])
+            self.line_bot_api.reply_message(reply_token, TextSendMessage(text=fortune))
+        elif em == "吃什麼":
+            eat = random.choice(['熱情小7', '風雲', '水木','小吃部','熊本'])
+            self.line_bot_api.reply_message(reply_token, TextSendMessage(text=eat))
 
         #elif em == "哈哈":
             # TODO: Fix richmenu
