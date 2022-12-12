@@ -25,7 +25,7 @@ class RichmenuHandler:
                 - isRichmenu(bool): 若開頭為 [選單]
         '''
 
-        if msg[0:4] == '[選單]':
+        if msg.startswith('[選單]'):
             return True
         else:
             return False
@@ -64,7 +64,10 @@ class RichmenuHandler:
             self.line_bot_api.reply_message(reply_token, TextSendMessage(text="主動推播已經開啟囉"))
          
         elif em == "校務專區":
-            self.line_bot_api.reply_message(reply_token, affairT.affair_info_carousel())
+            reply_arr=[]
+            reply_arr.append(affairT.affair_info_carousel())
+            reply_arr.append(introT.intro_carousel())
+            self.line_bot_api.reply_message(reply_token, reply_arr) #神奇海螺先放來這裡
             
         elif em == "校園地圖查詢":
             location, err = user.getMapRecord(user_id)
@@ -76,20 +79,16 @@ class RichmenuHandler:
                 items = locationT.create_location_list(location)
                 self.line_bot_api.reply_message(reply_token, locationT.personal_intro(items))
             self.user.setFlag(user_id, 'mapping')
-            
-        elif em == "神奇海螺":
-            self.line_bot_api.reply_message(reply_token, introT.intro_carousel())
         
         # elif em == "新型冠狀病毒相關公告":
         #     self.line_bot_api.reply_message(reply_token, epidemicT.epidemic_info_carousel())
         # elif em == "新增新型冠狀病毒相關問題":  #ˋ4/5先拔除
         #     self.line_bot_api.reply_message(reply_token, epidemicT.epidemic_feedback())
         #     self.user.setFlag(user_id, 'epidemic_feedback')
-        
+
         elif em == "防疫Q&A":
             self.line_bot_api.reply_message(reply_token, epidemicT.qa_info())
             self.user.setFlag(user_id, 'epidemic_qa')
-
 
         #elif em == "哈哈":
             # TODO: Fix richmenu

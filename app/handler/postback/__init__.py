@@ -6,6 +6,7 @@ from app import app
 from API import UserAPI, BusAPI, DataAPI
 from app.handler.richmenu.template import epidemicT, broadcastT
 
+from API import AndxAPI
 from modules.affair import affairT, recnewsT, recnewUtil, stopT, phoneT
 from modules.bus import busT
 from modules.funtions import introT
@@ -96,9 +97,6 @@ class PostbackHandler:
             elif param.get('info') == 'phone':
                 self.line_bot_api.reply_message(reply_token, phoneT.qa_info())
                 self.user.setFlag(user_id, 'phone_qa')
-        elif param.get('flag') == 'intro':
-            if param.get('info') == 'share':
-                self.line_bot_api.reply_message(reply_token, FlexSendMessage(alt_text="分享QRcode", contents=json.loads(introT.share_template())))
         elif param.get('flag') == 'bus':
             if param.get('info') == 'main_campus':
                 self.line_bot_api.reply_message(reply_token, busT.main_campus_bus_img())
@@ -106,5 +104,22 @@ class PostbackHandler:
                 self.line_bot_api.reply_message(reply_token, busT.minor_campus_bus_img())
             elif param.get('info') == '83_bus':
                 self.line_bot_api.reply_message(reply_token, busT.et_bus_img())
-
+        elif param.get('flag') == 'commands':
+            if param.get('info') == 'share':
+                self.line_bot_api.reply_message(reply_token, FlexSendMessage(alt_text="分享QRcode", contents=json.loads(introT.share_template())))
+            elif param.get('info') == 'newjoke':
+                andx = AndxAPI()
+                anecdote, err = andx.getOne()
+                if err:
+                    # 沒笑話
+                    self.line_bot_api.reply_message(reply_token, TextSendMessage(text='沒找到笑話'))
+                    print(err)
+                else:
+                    self.line_bot_api.reply_message(reply_token, TextSendMessage(text=anecdote))
+            elif param.get('info') == 'addjoke':
+                self.line_bot_api.reply_message(reply_token, TextSendMessage(text='說吧！有什麼笑話這麼好笑？'))
+                self.user.setFlag(user_id, 'andx_insert')
+            elif param.get('info') == 'feedback':
+                self.line_bot_api.reply_message(reply_token, TextSendMessage(text='你有什麼意見或問題呢？告訴本汪，盡快為你處理！'))
+                self.user.setFlag(user_id, 'feedback')
 

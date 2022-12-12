@@ -1,18 +1,35 @@
-'''
-這段程式碼是一個處理使用者輸入訊息的類別，可以處理使用者輸入的聊天機器人指令，例如：
-
-!笑一下：顯示一則笑話
-!新增笑話：新增一則笑話
-!問題回饋：提供給使用者回饋問題的功能
-這個類別會在收到使用者的訊息後，檢查使用者是否輸入了指令，並且執行對應的指令。例如，若使用者輸入了 !笑一下，類別會從 API 拉取一則笑話，並且回傳給使用者。
-'''
-
 ''' Chatbot command  '''
-
+import os
+from modules.affair import qa_engine
+#import openai
+from revChatGPT.revChatGPT import Chatbot
 from linebot.models import *
+from app import app
+from dotenv import load_dotenv
+load_dotenv()
+'''
+def chatGPT(text):
+    if text.startswith("!") or text.startswith('！'):
+        text = text[1:]
+    openai.api_key = os.environ['OPENAI_TOKEN']
+    ans = openai.Completion.create(
+       model= "text-davinci-003",
+       prompt= text,
+       max_tokens= 1200,
+       temperature= 0.7
+    )
+    app.logger.info("有人問神奇海螺：" + text)
+    app.logger.info("神奇海螺回答：" + ans['choices'][0]['text'].strip())
+    return ans['choices'][0]['text'].strip()
+'''
+config = {
+  "session_token": os.environ['session_token'],
+  "cf_clearance": os.environ['cf_clearance'],
+  "user_agent": os.environ['user_agent'],
+  #"proxy": "<HTTP/HTTPS_PROXY>"
+}
 
-from API import AndxAPI
-from modules.funtions import introT
+chatbot = Chatbot(config, conversation_id=None)
 
 class CmdHandler:
     def __init__(self, line_bot_api, user_instance):
@@ -27,7 +44,7 @@ class CmdHandler:
                 - isCMD(bool): 若!在第一個字元
         '''
 
-        if msg[0]=='!' or msg[0]=='！':
+        if msg.startswith('!') or msg.startswith('！'):
             return True
         else:
             return False
@@ -37,32 +54,26 @@ class CmdHandler:
             return msg.split("!")[1]
         elif msg[0]=='！':
             return msg.split("！")[1]
-
-    def run(self, event, msg):
-        user_id = event.source.user_id
-        reply_token = event.reply_token
         
+    def run(self, event, msg):        
         # intro all cmd of chatbot
         if msg=='!' or msg=='！':
-            self.line_bot_api.reply_message(reply_token, introT.intro_carousel())
+            self.line_bot_api.reply_message(event.reply_token, TextSendMessage(text="在你要打的句子面前加上驚嘆號 (！)，就能召喚神奇海螺囉"))
         # 執行 cmd    
         else:
-            em = self.extract_msg(msg)
-
-            if em == "笑一下":
-                andx = AndxAPI()
-                anecdote, err = andx.getOne()
-                if err:
-                    # 沒笑話
-                    self.line_bot_api.reply_message(reply_token, TextSendMessage(text='沒找到笑話'))
-                    print(err)
-                else:
-                    self.line_bot_api.reply_message(reply_token, TextSendMessage(text=anecdote))
+            user_message = event.message.text
+            print(user_message)
+            response = chatbot.get_chat_response((user_message), output="text")
+            print(response)
+            # Get opengpt's response
+            openai_response = response["message"]
+            self.line_bot_api.reply_message(event.reply_token, TextSendMessage(text=openai_response))
             
-            elif em == "新增笑話":
-                self.line_bot_api.reply_message(reply_token, TextSendMessage(text='說吧！有什麼笑話這麼好笑？'))
-                self.user.setFlag(user_id, 'andx_insert')
-            
-            elif em == "問題回饋":
-                self.line_bot_api.reply_message(reply_token, TextSendMessage(text='你有什麼意見或問題呢？告訴本汪，盡快為你處理！'))
-                self.user.setFlag(user_id, 'feedback')
+'''
+usage:
+elif event.message.text!='你絕對不會輸入這個文字':
+     line_bot_api.reply_message(  # 回復傳入的訊息文字
+     event.reply_token,
+     TextSendMessage(text=chatGPT(event.message.text))
+     )
+'''

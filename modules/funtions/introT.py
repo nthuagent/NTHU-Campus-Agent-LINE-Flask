@@ -1,7 +1,6 @@
 from linebot.models import *
 
 def intro_carousel():
-    # invoked by `!` command
     carousel_template = TemplateSendMessage(        
         alt_text = '下指令給狗狗情報員',
         template = CarouselTemplate(  
@@ -12,7 +11,7 @@ def intro_carousel():
                     actions = [
                         PostbackTemplateAction(
                             label='分享給好友',
-                            data='source=richmenu&flag=intro&info=share'
+                            data='source=richmenu&flag=commands&info=share'
                         )
                     ]
                 ),
@@ -20,9 +19,9 @@ def intro_carousel():
                     title = '笑一下',
                     text = '聽聽四散在校園的奇聞軼事吧！讓自己輕鬆一下！',
                     actions = [
-                        MessageTemplateAction(
+                        PostbackTemplateAction(
                             label='笑一下',
-                            text='!笑一下'
+                            data='source=richmenu&flag=commands&info=newjoke'
                         )
                     ]
                 ),
@@ -30,9 +29,9 @@ def intro_carousel():
                     title = '新增笑話',
                     text = '告訴狗狗情報員關於你在校園生活中的笑料，讓校園充滿歡笑吧！',
                     actions = [
-                        MessageTemplateAction(
+                        PostbackTemplateAction(
                             label='新增笑話',
-                            text='!新增笑話'
+                            data='source=richmenu&flag=commands&info=addjoke'
                         )
                     ]
                 ),
@@ -40,9 +39,9 @@ def intro_carousel():
                     title = '問題回饋',
                     text = '我跟校園狗狗情報員溝通不良，想要回報問題或提供意見',
                     actions = [
-                        MessageTemplateAction(
+                        PostbackTemplateAction(
                             label='問題回饋',
-                            text='!問題回饋'
+                            data='source=richmenu&flag=commands&info=feedback'
                         )
                     ]
                 ),
@@ -51,24 +50,6 @@ def intro_carousel():
     )
 
     return carousel_template
-
-# def share_template():
-#     QuickReply_text_message = TextSendMessage(
-#         text = '太讚了！請問您想要如何分享我呢？',
-#         quick_reply = QuickReply(
-#             items = [
-#                 QuickReplyButton(
-#                     image_url='https://i.imgur.com/pHV1IIF.png',
-#                     action = URIAction(label = "分享給LINE好友", uri = 'https://line.me/R/nv/recommendOA/@nthuchatbot'),
-#                 ),
-#                 QuickReplyButton(
-#                     image_url='https://i.imgur.com/5I5Xi5E.png',
-#                     action = PostbackAction(label = "QRcode分享", data = 'source=richmenu&flag=intro&info=qrcode')
-#                 )
-#             ]
-#         )
-#     )
-#     return QuickReply_text_message
 
 def share_template():
     # ! -> 分享給好友

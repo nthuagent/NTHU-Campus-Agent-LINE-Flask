@@ -6,23 +6,13 @@
 '''
 
 import os
-from dotenv import load_dotenv
 from API import TokenAPI, UserAPI
 from linebot import LineBotApi, WebhookHandler
 
+from dotenv import load_dotenv
 load_dotenv()
-
-# 取得 token & webhook
-# t = TokenAPI()
-# token, webhook, _ = t.getAuth(mode)
-
-# official:
 token = os.environ['LINE_OFFICIAL_TOKEN']
 webhook = os.environ['LINE_WEBHOOK_STRING']
-
-# beta:
-# token = 'BETA_TOKEN'
-# webhook = 'WEBHOOK_STRING'
 
 # Chatbot
 line_bot_api = LineBotApi(token)

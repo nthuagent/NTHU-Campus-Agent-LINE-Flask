@@ -8,3 +8,4 @@ gevent
 requests
 pyquery
 python-dotenv
+revChatGPT
