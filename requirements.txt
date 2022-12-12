@@ -8,4 +8,4 @@ gevent
 requests
 pyquery
 python-dotenv
-revChatGPT
+revChatGPT==0.0.a42
