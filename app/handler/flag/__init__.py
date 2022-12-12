@@ -7,16 +7,15 @@
 '''
 
 from linebot.models import *
-
-from app.handler.flag.template import EpidemicQATemplate, AffairQATemplate
+import json
 
 from API import AndxAPI, FeedbackAPI, PhoneAPI
-from qa_engine.engine import QA_Engine
-from qa_engine.phone_engine import Phone_Engine
-from utils import mapUtil
 from API import UserAPI
-from app.handler.richmenu.template import phoneT
-import json
+from modules.map import mapUtil
+from modules.affair import phoneT
+from modules.affair.template import EpidemicQATemplate, AffairQATemplate
+from modules.affair.qa_engine.engine import QA_Engine
+from modules.affair.qa_engine.phone_engine import Phone_Engine
 
 
 class FlagHandler():

@@ -1,7 +1,7 @@
 from linebot.models import *
 import json
 
-from utils import busUtil
+from modules.bus import busUtil
 
 def main_campus_bus_img(): #校本部公車
     template_list = []

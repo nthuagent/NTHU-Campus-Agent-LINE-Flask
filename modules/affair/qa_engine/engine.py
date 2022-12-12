@@ -14,7 +14,7 @@ match_ans：比對輸入問題與資料中的問題，並回傳最匹配的問�
 
 from fuzzywuzzy import fuzz, process
 
-from qa_engine.loader import data_loader
+from .loader import data_loader
 
 class QA_Engine:
     def __init__(self):

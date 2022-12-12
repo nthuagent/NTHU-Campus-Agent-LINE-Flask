@@ -12,7 +12,7 @@ phone_list_loader函式則是用於讀取電話簿資料的輔助函式。
 
 from fuzzywuzzy import fuzz, process
 
-from qa_engine.loader import phone_list_loader
+from .loader import phone_list_loader
 
 class Phone_Engine:
     def __init__(self):

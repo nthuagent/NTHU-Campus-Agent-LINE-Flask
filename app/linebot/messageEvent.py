@@ -7,15 +7,12 @@
 from linebot.models import *
 
 from app.linebot import line_bot_api, handler, user
-from app.handler import RichmenuHandler, FlagHandler, CmdHandler
-# from richmenu.handler import RichmenuHandler, PostbackHandler
-# from flag.handler import FlagHandler
-# from command.handler import CmdHandler
+from app.handler import RichmenuHandler, FlagHandler
+from modules.funtions.commands import CmdHandler
 
 cmd_handler = CmdHandler(line_bot_api, user)
 richmenu_handler = RichmenuHandler(line_bot_api, user)
 flag_handler = FlagHandler(line_bot_api, user)
-
 # 處理訊息
 @handler.add(MessageEvent, message=TextMessage)
 def handle_message(event):
@@ -30,16 +27,16 @@ def handle_message(event):
     print('flag: ', flag)
     print('message_text: ', message_text)
 
+    # 選單事件
+    if richmenu_handler.detect(message_text):
+        print('is richmenu:', richmenu_handler.detect(message_text))
+        user.initFlag(user_id)
+        richmenu_handler.run(event, message_text)
+        
     # 指令事件
     if cmd_handler.detect(message_text):
         user.initFlag(user_id)
         cmd_handler.run(event, message_text)
-
-    # 選單事件
-    elif richmenu_handler.detect(message_text):
-        print('is richmenu:', richmenu_handler.detect(message_text))
-        user.initFlag(user_id)
-        richmenu_handler.run(event, message_text)
     
     # flag流程
     elif flag != 'init':
