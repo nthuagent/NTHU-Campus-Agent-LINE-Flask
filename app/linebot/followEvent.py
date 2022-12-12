@@ -15,8 +15,7 @@ def handle_follow(event):
     user_id = event.source.user_id
     user.insertOne(user_id)
     app.logger.info("Got Follow event:" + event.source.user_id)
-
-    welcome_text = '''初次見面！我是清大校園情報員，你可以叫我狗狗情報員！生活上的大小事，只要是你遇到的問題，我都會努力幫你解決唷！
+    welcome_text = '''(profile) 初次見面！我是清大校園情報員，你可以叫我狗狗情報員！生活上的大小事，只要是你遇到的問題，我都會努力幫你解決唷！
     
 你可以~~ฅ'ω'ฅ
 🚩取得/詢問新型冠狀病毒資訊！

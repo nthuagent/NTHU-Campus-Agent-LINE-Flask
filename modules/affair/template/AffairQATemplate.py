@@ -13,7 +13,7 @@ def ans_and_confirm_btn(ans):
             actions=[                              
                 PostbackTemplateAction(
                     label='不用了',
-                    data='source=none&flag=stop&info=qa'
+                    data='source=none&flag=stop&info=qa',
                 ),
                 PostbackTemplateAction(
                     label='繼續提問',

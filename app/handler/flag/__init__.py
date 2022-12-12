@@ -9,8 +9,7 @@
 from linebot.models import *
 import json
 
-from API import AndxAPI, FeedbackAPI, PhoneAPI
-from API import UserAPI
+from API import AndxAPI, FeedbackAPI, PhoneAPI, UserAPI
 from modules.map import mapUtil
 from modules.affair import phoneT
 from modules.affair.template import EpidemicQATemplate, AffairQATemplate

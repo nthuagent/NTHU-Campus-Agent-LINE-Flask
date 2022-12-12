@@ -7,7 +7,7 @@
 from linebot.models import *
 
 from app.linebot import line_bot_api, handler, user
-from app.handler import RichmenuHandler, FlagHandler
+from app.handler import FlagHandler, PostbackHandler, RichmenuHandler
 from modules.funtions.commands import CmdHandler
 
 cmd_handler = CmdHandler(line_bot_api, user)
