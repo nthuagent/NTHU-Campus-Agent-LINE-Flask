@@ -49,6 +49,11 @@ spec:
             secretKeyRef:
               name: line-webhook-string # kubernetes secret
               key: password
+        - name: OPENAI_TOKEN 
+          valueFrom: 
+            secretKeyRef:
+              name: openai_token # kubernetes secret
+              key: password
 ---
 apiVersion: v1
 kind: Service
