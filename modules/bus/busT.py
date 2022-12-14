@@ -1,27 +1,31 @@
-from linebot.models import *
 import json
-
+from linebot.models import *
 from modules.bus import busUtil
 
+def handle_menu(self, reply_token, em):
+    if em == "校本部公車":
+        self.line_bot_api.reply_message(reply_token, main_campus_bus_img())
+    elif em == "南大專車":
+        self.line_bot_api.reply_message(reply_token, main_campus_bus_img())
+    elif em == "83路線公車":
+        self.line_bot_api.reply_message(reply_token, main_campus_bus_img())
+        
 def main_campus_bus_img(): #校本部公車
     template_list = []
-
     img_1_template = ImageSendMessage(
         original_content_url='https://nthuagent.pages.dev/bus/maincampus/1.jpg', 
         preview_image_url='https://nthuagent.pages.dev/bus/maincampus/1.jpg'
     )
     img_2_template = ImageSendMessage(
-         original_content_url='https://nthuagent.pages.dev/bus/maincampus/2.jpg', 
-         preview_image_url='https://nthuagent.pages.dev/bus/maincampus/2.jpg'
-     )
+            original_content_url='https://nthuagent.pages.dev/bus/maincampus/2.jpg', 
+            preview_image_url='https://nthuagent.pages.dev/bus/maincampus/2.jpg'
+    )
     template_list.append(img_1_template)
     template_list.append(img_2_template)
-
     return template_list
 
 def minor_campus_bus_img(): #南大專車
     template_list = []
-
     img_1_template = ImageSendMessage(
         original_content_url='https://nthuagent.pages.dev/bus/nanda/1.jpg', 
         preview_image_url='https://nthuagent.pages.dev/bus/nanda/1.jpg'
@@ -30,25 +34,19 @@ def minor_campus_bus_img(): #南大專車
         original_content_url='https://nthuagent.pages.dev/bus/nanda/2.jpg', 
         preview_image_url='https://nthuagent.pages.dev/bus/nanda/2.jpg'
     )
-
     template_list.append(img_1_template)
     template_list.append(img_2_template)
-
     return template_list
 
 def et_bus_img(): #83路線公車
     template_list = []
-
     text_template = TextSendMessage(text="清華大學校內各站(含清大北校門、第二綜合大樓、生科館/人社院、台積館)不開放校外人下車，乘客如持清大證件可以下車。")
-
     img_1_template = ImageSendMessage(
         original_content_url='https://nthuagent.pages.dev/bus/83/1.jpg', 
         preview_image_url='https://nthuagent.pages.dev/bus/83/1.jpg'
     )
-
     template_list.append(text_template)
     template_list.append(img_1_template)
-
     return template_list
 
 def bus_route_template(): #公車路線清單
@@ -59,21 +57,21 @@ def bus_route_template(): #公車路線清單
             title='公車路線',
             text='請選擇你要查詢的公車路線',
             actions=[
-                URITemplateAction(
+                URIAction(
                     label='公車資訊公告',
                     uri='https://affairs.site.nthu.edu.tw/p/403-1165-1065-1.php?Lang=zh-tw'
                 ),
-                PostbackTemplateAction(
+                MessageAction(
                     label='校本部公車',
-                    data='source=richmenu&flag=bus&info=main_campus'
+                    text='[公車]校本部公車'
                 ),
-                PostbackTemplateAction(
+                MessageAction(
                     label='南大專車',
-                    data='source=richmenu&flag=bus&info=minor_campus'
+                    text='[公車]南大專車'
                 ),
-                PostbackTemplateAction(
+                MessageAction(
                     label='83路線公車',
-                    data='source=richmenu&flag=bus&info=83_bus'
+                    text='[公車]83公車'
                 )
                 # # TODO: 動態校車
                 # PostbackTemplateAction(
@@ -158,7 +156,6 @@ def dynbus_geton_loc_template():
             ]
         )
     )
-
 
     # dynbus_geton_loc_template = TemplateSendMessage(
     #     alt_text='請輸入你的上車站名',

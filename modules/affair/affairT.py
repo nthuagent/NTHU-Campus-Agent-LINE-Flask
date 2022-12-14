@@ -9,7 +9,7 @@ def affair_info_carousel():
                     title = '校園電話查詢',
                     text = '點擊「查詢電話」輸入校園單位，本汪可以直接告訴你喔！',
                     actions = [
-                        PostbackTemplateAction(
+                        PostbackAction(
                             label='查詢電話',
                             data='source=richmenu&flag=affair&info=phone'
                         )
@@ -19,7 +19,7 @@ def affair_info_carousel():
                     title = '校園活動資訊',
                     text = '點擊「更多資訊」，本汪可以直接告訴你喔！',
                     actions = [
-                        PostbackTemplateAction(
+                        PostbackAction(
                             label='更多資訊',
                             data='source=richmenu&flag=affair&info=recnews'
                         )
@@ -29,7 +29,7 @@ def affair_info_carousel():
                     title = '校務Q&A',
                     text = '點擊「我要提問」輸入想問的校務問題，本汪可以直接告訴你喔！',
                     actions = [
-                        PostbackTemplateAction(
+                        PostbackAction(
                             label='我要提問',
                             data='source=richmenu&flag=affair&info=qa'
                         )
@@ -43,10 +43,10 @@ def affair_info_carousel():
                             label = '最新版本',
                             uri = 'https://nthuagent.pages.dev/calendar/111/zh.pdf'
                         )
-#                        URIAction(
-#                            label = 'English Version',
-#                            uri = 'https://nthuagent.pages.dev/calendar/111/en.pdf'
-#                        )
+                        #URITemplateAction(
+                        #    label = 'English Version',
+                        #    uri = 'https://nthuagent.pages.dev/calendar/111/en.pdf'
+                        #)
                     ]
                 )
             ]

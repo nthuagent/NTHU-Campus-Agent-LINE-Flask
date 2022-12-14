@@ -4,10 +4,8 @@ from linebot.models import *
 import json
 from app import app
 from API import AndxAPI, UserAPI, BusAPI, DataAPI
-from app.handler.richmenu.template import epidemicT, broadcastT
 
-from modules.affair import affairT, recnewsT, recnewUtil, stopT, phoneT
-from modules.bus import busT
+from modules.affair import affairT, recnewsT, recnewUtil, stopT, phoneT, epidemicT
 from modules.funtions import introT
 
 
@@ -97,13 +95,6 @@ class PostbackHandler:
             elif param.get('info') == 'phone':
                 self.line_bot_api.reply_message(reply_token, phoneT.qa_info())
                 self.user.setFlag(user_id, 'phone_qa')
-        elif param.get('flag') == 'bus':
-            if param.get('info') == 'main_campus':
-                self.line_bot_api.reply_message(reply_token, busT.main_campus_bus_img())
-            elif param.get('info') == 'minor_campus':
-                self.line_bot_api.reply_message(reply_token, busT.minor_campus_bus_img())
-            elif param.get('info') == '83_bus':
-                self.line_bot_api.reply_message(reply_token, busT.et_bus_img())
         elif param.get('flag') == 'commands':
             if param.get('info') == 'share':
                 self.line_bot_api.reply_message(reply_token, FlexSendMessage(alt_text="分享QRcode", contents=json.loads(introT.share_template())))
