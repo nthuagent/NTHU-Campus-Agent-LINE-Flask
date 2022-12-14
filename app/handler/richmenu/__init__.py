@@ -8,9 +8,11 @@ from API import UserAPI
 from modules.affair import affairT, epidemicT
 from modules.bus import busT
 from modules.broadcast import broadcastT
-from modules.funtions import introT, toolsT
+from modules.funtions import introT
 from modules.map import locationT
 from modules.recruitment import recruitmentT, recruitmentUtil
+from modules.tzaiwu import tzaiwuT
+from modules.games import randomT
 
 class RichmenuHandler:
     def __init__(self, line_bot_api, user_instance):
@@ -70,7 +72,7 @@ class RichmenuHandler:
                 reply_arr=[]
                 reply_arr.append(affairT.affair_info_carousel())
                 reply_arr.append(introT.intro_carousel())
-                reply_arr.append(toolsT.tools_carousel())
+                reply_arr.append(randomT.random_carousel())
                 self.line_bot_api.reply_message(reply_token, reply_arr) #神奇海螺先放來這裡
             
             elif em == "校園地圖查詢":
@@ -88,21 +90,17 @@ class RichmenuHandler:
                 self.line_bot_api.reply_message(reply_token, epidemicT.qa_info())
                 self.user.setFlag(user_id, 'epidemic_qa')
                 
+            elif em == "載物書院":
+                self.line_bot_api.reply_message(reply_token, tzaiwuT.tzaiwu_intro())
+                
         elif menu == "[公車]":
-            if em == "校本部公車":
-                self.line_bot_api.reply_message(reply_token, busT.main_campus_bus_img())
-            elif em == "南大專車":
-                self.line_bot_api.reply_message(reply_token, busT.main_campus_bus_img())
-            elif em == "83路線公車":
-                self.line_bot_api.reply_message(reply_token, busT.main_campus_bus_img())
+                return busT.handle_menu(self, reply_token, em)
+
+        elif menu == "[載物]":
+                return tzaiwuT.handle_menu(self, reply_token, em)
            
-        elif menu == "[隨機]":
-            if em == "運勢":
-                fortune = random.choice(['超凶', '大凶', '凶', '末吉', '吉','中吉','大吉'])
-                self.line_bot_api.reply_message(reply_token, TextSendMessage(text=fortune))
-            elif em == "吃什麼":
-                eat = random.choice(['熱情小7', '風雲', '水木','小吃部','熊本'])
-                self.line_bot_api.reply_message(reply_token, TextSendMessage(text=eat))
+        elif menu == "[娛樂]":
+                return randomT.handle_menu(self, reply_token, em)
 
 
         # elif em == "新型冠狀病毒相關公告":

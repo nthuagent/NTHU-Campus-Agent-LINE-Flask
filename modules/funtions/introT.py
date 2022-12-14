@@ -51,23 +51,6 @@ def intro_carousel():
 
     return carousel_template
 
-'''
-                CarouselColumn(
-                    title = '隨機小遊戲',
-                    text = '選擇障礙的人，來看看今天要做什麼吧',
-                    actions = [
-                        MessageAction(
-                            label='今日運勢',
-                            text='運勢'
-                        ),
-                        MessageAction(
-                            label='等等吃什麼',
-                            text='吃什麼'
-                        )
-                    ]
-                ),
-'''
-
 def share_template():
     # ! -> 分享給好友
     bubble_json = '''
