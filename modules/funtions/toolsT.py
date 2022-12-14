@@ -11,11 +11,11 @@ def tools_carousel():
                     actions = [
                         MessageAction(
                             label='今日運勢',
-                            text='[選單]運勢'
+                            text='[隨機]運勢'
                         ),
                         MessageAction(
                             label='等等吃什麼',
-                            text='[選單]吃什麼'
+                            text='[隨機]吃什麼'
                         )
                     ]
                 ),
