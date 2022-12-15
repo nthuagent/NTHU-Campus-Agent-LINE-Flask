@@ -15,8 +15,8 @@ def tzaiwu_intro():
             imageSize = 'cover',
             columns = [
                 CarouselColumn(
-                    thumbnailImageUrl = 'https://truth.bahamut.com.tw/s01/201509/04561ddf54e4d88da771aa2bc8ac7576.JPG',
-                    imageBackgroundColor = '#111111',
+                    #thumbnailImageUrl = 'https://.JPG',
+                    #imageBackgroundColor = '#111111',
                     title = '載物填表單',
                     text = '載物書院有好多表單要填，情報員幫你集合在這裡！',
                     actions = [
@@ -37,7 +37,7 @@ def tzaiwu_intro():
                     ]
                 )
                 #CarouselColumn( #開發中，暫時停用
-                #    thumbnailImageUrl = 'https://truth.bahamut.com.tw/s01/201509/04561ddf54e4d88da771aa2bc8ac7576.JPG',
+                #    thumbnailImageUrl = 'https://.JPG',
                 #    imageBackgroundColor = '#111111',
                 #    title = '載物看小組',
                 #    text = '載物書院那麼多小組讓你眼花撩亂嗎？情報員都整理好囉！',
