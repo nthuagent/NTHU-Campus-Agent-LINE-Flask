@@ -11,10 +11,14 @@ def tzaiwu_intro():
     tzaiwu_intro = TemplateSendMessage(        
         alt_text = '載物書院專屬功能',
         template = CarouselTemplate(  
+            imageAspectRatio = 'rectangle',
+            imageSize = 'cover',
             columns = [
                 CarouselColumn(
+                    #thumbnailImageUrl = 'https://.JPG',
+                    #imageBackgroundColor = '#111111',
                     title = '載物填表單',
-                    text = '請填寫載物資訊',
+                    text = '載物書院有好多表單要填，情報員幫你集合在這裡！',
                     actions = [
                         MessageAction(
                             label='我想要借設備或空間！',
@@ -26,30 +30,32 @@ def tzaiwu_intro():
                         ),
                         # 務必記得，每個 CarouselColumn 的 Action 數量務必相同！
                         # 我被搞到心態沒了
-                        MessageAction(
-                            label='他們壞了，我想要修理他們！',
-                            text='[載物]修繕設備與空間'
-                        )
-                    ]
-                ),
-                CarouselColumn(
-                    title = '載物看小組',
-                    text = '開發中，暫停使用',
-                    actions = [
-                        MessageAction(
-                            label='有什麼載物小組？',
-                            text='[載物]載物小組'
-                        ),
-                        MessageAction(
-                            label='有什麼產創小組？',
-                            text='[載物]產創小組'
-                        ),
-                        MessageAction(
-                            label='有什麼服學小組？',
-                            text='[載物]服學小組'
+                        URIAction(
+                            label='看看目前的空間借用狀況',
+                            uri='https://calendar.google.com/calendar/embed?src=oa27fmn21hoqd0hvdpg1bqlv1k%40group.calendar.google.com&ctz=Asia%2FTaipei'
                         )
                     ]
                 )
+                #CarouselColumn( #開發中，暫時停用
+                #    thumbnailImageUrl = 'https://.JPG',
+                #    imageBackgroundColor = '#111111',
+                #    title = '載物看小組',
+                #    text = '載物書院那麼多小組讓你眼花撩亂嗎？情報員都整理好囉！',
+                #    actions = [
+                #        MessageAction(
+                #            label='有什麼載物小組？',
+                #            text='[載物]載物小組'
+                #        ),
+                #        MessageAction(
+                #            label='有什麼產創小組？',
+                #            text='[載物]產創小組'
+                #        ),
+                #        MessageAction(
+                #            label='有什麼服學小組？',
+                #            text='[載物]服學小組'
+                #        )
+                #    ]
+                #)
             ]
         )
     )
@@ -76,12 +82,12 @@ def tzaiwu_space():
                     ]
                 ),
                 CarouselColumn(
-                    title = '我要更大的空間！',
+                    title = '我想要借用仁廚！',
                     altText = '我要更大的空間！',
-                    text = '如果要借用廚具請找空間管理員，在借用廚具後會獲得仁廚的優先使用權',
+                    text = '如果要（合法的）借用廚具請找空間管理員，在借用廚具後會獲得仁廚的優先使用權',
                     actions = [
                         URIAction(
-                            label='仁齋空間登記！',
+                            label='仁廚空間登記！',
                             uri='https://forms.gle/td3pvqHQopKZmESE6'
                         ),
                         URIAction(

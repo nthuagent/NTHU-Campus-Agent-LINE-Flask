@@ -50,7 +50,6 @@ def et_bus_img(): #83路線公車
     return template_list
 
 def bus_route_template(): #公車路線清單
-    template_list = []
     bus_route_template = TemplateSendMessage(
         alt_text='公車路線清單',
         template=ButtonsTemplate(
@@ -81,8 +80,7 @@ def bus_route_template(): #公車路線清單
             ]
         )
     )
-    template_list.append(bus_route_template)
-    return template_list
+    return bus_route_template
 
 # 動態公車: 上車地點
 def dynbus_geton_loc_template():
