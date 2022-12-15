@@ -13,6 +13,7 @@ from modules.map import locationT
 from modules.recruitment import recruitmentT, recruitmentUtil
 from modules.tzaiwu import tzaiwuT
 from modules.games import randomT
+from modules.demo import demoT
 
 class RichmenuHandler:
     def __init__(self, line_bot_api, user_instance):
@@ -93,6 +94,9 @@ class RichmenuHandler:
             elif em == "載物書院":
                 self.line_bot_api.reply_message(reply_token, tzaiwuT.tzaiwu_intro())
                 
+            elif em== "DMOE" or "demo":
+                self.line_bot_api.reply_message(reply_token, demoT.demoT_intro())
+                
         elif menu == "[公車]":
                 return busT.handle_menu(self, reply_token, em)
 
@@ -101,6 +105,9 @@ class RichmenuHandler:
            
         elif menu == "[娛樂]":
                 return randomT.handle_menu(self, reply_token, em)
+
+        elif menu == "[示範]":
+                return demoT.handle_menu(self, reply_token, em)
 
 
         # elif em == "新型冠狀病毒相關公告":
