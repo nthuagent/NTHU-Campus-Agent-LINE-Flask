@@ -21,19 +21,21 @@ class RichmenuHandler:
         self.user = user_instance
     
     def detect(self, msg):
-        '''判斷是否為選單事件
-            Params:
-                - msg
-            Return:
-                - isRichmenu(bool): 若開頭為 [選單]
-        '''
-
+        # 判斷是否為選單事件
+        #   Params:
+        #       - msg
+        #   Return:
+        #       - isRichmenu(bool): 若開頭為 [選單]
         if msg.startswith('['):
             return True
         else:
             return False
 
     def run(self, event, msg):
+        # LINE API Document:
+        # https://developers.line.biz/en/docs/messaging-api/overview/
+        # Python SDK Document:
+        # https://github.com/line/line-bot-sdk-python
         user_id = event.source.user_id
         reply_token = event.reply_token
         
@@ -42,10 +44,9 @@ class RichmenuHandler:
         # origin = [選單]你好
         # menu = [選單]
         # em = [你好]
-        origin = msg #original message
-        menu = msg[0:4] #input menu
-        em = msg[4:] #extract message
-        
+        origin = msg # original message
+        menu = msg[0:4] # input menu
+        em = msg[4:] # extract message
         print('trigger: ', menu)
         
         user = UserAPI()
@@ -94,7 +95,7 @@ class RichmenuHandler:
             elif em == "載物書院":
                 self.line_bot_api.reply_message(reply_token, tzaiwuT.tzaiwu_intro())
                 
-            elif em== "DMOE" or "demo":
+            elif em== "DEMO" or "demo": #演示各 Template
                 self.line_bot_api.reply_message(reply_token, demoT.demoT_intro())
                 
         elif menu == "[公車]":

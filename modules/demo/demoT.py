@@ -2,7 +2,11 @@ from linebot.models import *
 from app.handler.richmenu import *
 
 def handle_menu(self, reply_token, em):
-    if em == "DEMO1":
+    if em == "DEMO":
+        self.line_bot_api.reply_message(reply_token, demoT_intro1())
+    elif em == "DEMO0":
+        self.line_bot_api.reply_message(reply_token, demoT_intro2())
+    elif em == "DEMO1":
         self.line_bot_api.reply_message(reply_token, tzaiwu_space())
     elif em == "DEMO2":
         self.line_bot_api.reply_message(reply_token, bus_route_template())
@@ -10,14 +14,42 @@ def handle_menu(self, reply_token, em):
         self.line_bot_api.reply_message(reply_token, ok_button())
     elif em == "DEMO4":
         self.line_bot_api.reply_message(reply_token, image_temp())
+    elif em == "DEMO5":
+        self.line_bot_api.reply_message(reply_token, qa_info())
+    elif em == "DEMO6":
+        self.line_bot_api.reply_message(reply_token, image_map())
+    elif em == "DEMO7":
+        self.line_bot_api.reply_message(reply_token, random_carousel())
+    elif em == "DEMO8":
+        self.line_bot_api.reply_message(reply_token, random_carousel())
 
 #def demoT_intro():
 #    reply_arr=[]
 #    reply_arr.append(tzaiwu_space())
 #    return reply_arr
 
-def demoT_intro(): #公車路線清單
+def demoT_intro(): # DEMO 啟動器
     demoT_intro = TemplateSendMessage(
+        alt_text='DEMO',
+        template=ButtonsTemplate(
+            title='DEMO',
+            text='請選擇你要使用的 DEMO',
+            actions=[
+                MessageAction(
+                    label='DEMO',
+                    text='[示範]DEMO'
+                ),
+                MessageAction(
+                    label='DEMO0',
+                    text='[示範]DEMO0'
+                )
+            ]
+        )
+    )
+    return demoT_intro
+
+def demoT_intro1(): # DEMO 啟動器
+    demoT_intro_1 = TemplateSendMessage(
         alt_text='DEMO',
         template=ButtonsTemplate(
             title='DEMO',
@@ -39,16 +71,39 @@ def demoT_intro(): #公車路線清單
                     label='image_temp',
                     text='[示範]DEMO4'
                 )
-                # # TODO: 動態校車
-                # PostbackTemplateAction(
-                #     label='校本部校車動態查詢',
-                #     data='source=richmenu&flag=bus&info=dyn_search'
-                # )
             ]
         )
     )
-    return demoT_intro
+    return demoT_intro_1
 
+def demoT_intro2(): # DEMO 啟動器
+    demoT_intro_2 = TemplateSendMessage(
+        alt_text='DEMO',
+        template=ButtonsTemplate(
+            title='DEMO',
+            text='請選擇你要使用的 DEMO',
+            actions=[
+                MessageAction(
+                    label='qa_info',
+                    text='[示範]DEMO5'
+                ),
+                MessageAction(
+                    label='image_map',
+                    text='[示範]DEMO6'
+                ),
+                MessageAction(
+                    label='隨機運勢',
+                    text='[示範]DEMO7'
+                ),
+                MessageAction(
+                    label='校內工讀',
+                    text='[選單]清華校內工讀'
+                )
+            ]
+        )
+    )
+    return demoT_intro_2
+    
 def tzaiwu_space():
     tzaiwu_space = TemplateSendMessage(        
         alt_text = '載物書院專屬功能',
@@ -181,8 +236,8 @@ def ok_button():
                     data='action=buy&itemid=1'
                 ),
                 MessageAction(
-                    label='訊息',
-                    text='訊息'
+                    label='DEMO5',
+                    text='[示範]DEMO5'
                 )
             ]
         )
@@ -229,11 +284,58 @@ def qa_info():
                     image_url='https://i.imgur.com/lwoIwZa.png',
                     action = MessageAction(label = "駐衛警察隊", text = "駐衛警察隊"),
                 ),
-                # QuickReplyButton(
-                #     image_url='https://i.imgur.com/7wGbjZJ.png',
-                #     action = MessageAction(label = "清華總機", text = "清華總機"),
-                # )
+                QuickReplyButton(
+                     image_url='https://i.imgur.com/7wGbjZJ.png',
+                     action = MessageAction(label = "清華總機", text = "清華總機"),
+                )
             ]
         )
     )
     return QuickReply_text_message
+
+def image_map():
+    image_map = ImagemapSendMessage(
+        base_url='',
+        alt_text='this is an imagemap',
+        base_size=BaseSize(height=520, width=520),
+        actions=[
+            URIImagemapAction(
+                link_uri='',
+                area=ImagemapArea(
+                    x=174, y=65, width=707, height=416
+                )
+            ),
+            MessageImagemapAction(
+                text='hello',
+                area=ImagemapArea(
+                    x=520, y=0, width=520, height=520
+                )
+            )
+        ]
+    )
+    return image_map
+
+def random_carousel():
+    random_carousel = TemplateSendMessage(        
+        alt_text = '下指令給狗狗情報員',
+        template = CarouselTemplate(  
+            columns = [
+                 CarouselColumn(
+                    title = '隨機小遊戲',
+                    text = '選擇障礙的人，來看看今天要做什麼吧',
+                    actions = [
+                        MessageAction(
+                            label='今日運勢',
+                            text='[娛樂]運勢'
+                        ),
+                        MessageAction(
+                            label='等等吃什麼',
+                            text='[娛樂]吃什麼'
+                        )
+                    ]
+                ),
+            ]
+        )
+    )
+
+    return random_carousel
