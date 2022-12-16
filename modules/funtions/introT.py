@@ -1,59 +1,61 @@
 from linebot.models import *
 
+
 def intro_carousel():
-    carousel_template = TemplateSendMessage(        
-        alt_text = '下指令給狗狗情報員',
-        template = CarouselTemplate(  
-            columns = [
+    carousel_template = TemplateSendMessage(
+        alt_text="下指令給狗狗情報員",
+        template=CarouselTemplate(
+            columns=[
                 CarouselColumn(
-                    title = '分享狗狗情報員',
-                    text = '快讓更多朋友認識我吧！\n @nthuchatbot',
-                    actions = [
+                    title="分享狗狗情報員",
+                    text="快讓更多朋友認識我吧！\n @nthuchatbot",
+                    actions=[
                         PostbackTemplateAction(
-                            label='分享給好友',
-                            data='source=richmenu&flag=commands&info=share'
+                            label="分享給好友",
+                            data="source=richmenu&flag=commands&info=share",
                         )
-                    ]
+                    ],
                 ),
                 CarouselColumn(
-                    title = '笑一下',
-                    text = '聽聽四散在校園的奇聞軼事吧！讓自己輕鬆一下！',
-                    actions = [
+                    title="笑一下",
+                    text="聽聽四散在校園的奇聞軼事吧！讓自己輕鬆一下！",
+                    actions=[
                         PostbackTemplateAction(
-                            label='笑一下',
-                            data='source=richmenu&flag=commands&info=newjoke'
+                            label="笑一下",
+                            data="source=richmenu&flag=commands&info=newjoke",
                         )
-                    ]
+                    ],
                 ),
                 CarouselColumn(
-                    title = '新增笑話',
-                    text = '告訴狗狗情報員關於你在校園生活中的笑料，讓校園充滿歡笑吧！',
-                    actions = [
+                    title="新增笑話",
+                    text="告訴狗狗情報員關於你在校園生活中的笑料，讓校園充滿歡笑吧！",
+                    actions=[
                         PostbackTemplateAction(
-                            label='新增笑話',
-                            data='source=richmenu&flag=commands&info=addjoke'
+                            label="新增笑話",
+                            data="source=richmenu&flag=commands&info=addjoke",
                         )
-                    ]
+                    ],
                 ),
                 CarouselColumn(
-                    title = '問題回饋',
-                    text = '我跟校園狗狗情報員溝通不良，想要回報問題或提供意見',
-                    actions = [
+                    title="問題回饋",
+                    text="我跟校園狗狗情報員溝通不良，想要回報問題或提供意見",
+                    actions=[
                         PostbackAction(
-                            label='問題回饋',
-                            data='source=richmenu&flag=commands&info=feedback'
+                            label="問題回饋",
+                            data="source=richmenu&flag=commands&info=feedback",
                         )
-                    ]
+                    ],
                 ),
             ]
-        )
+        ),
     )
 
     return carousel_template
 
+
 def share_template():
     # ! -> 分享給好友
-    bubble_json = '''
+    bubble_json = """
     {{
         "type": "bubble",
         "size": "mega",
@@ -140,6 +142,6 @@ def share_template():
             "paddingBottom": "xxl"
         }}
     }}
-    '''.format()
+    """.format()
 
     return bubble_json

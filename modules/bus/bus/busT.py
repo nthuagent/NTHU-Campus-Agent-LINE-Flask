@@ -3,32 +3,34 @@ import json
 
 from modules.bus import busUtil
 
-def main_campus_bus_img(): #校本部公車
+
+def main_campus_bus_img():  # 校本部公車
     template_list = []
 
     img_1_template = ImageSendMessage(
-        original_content_url='https://nthuagent.pages.dev/bus/maincampus/1.jpg', 
-        preview_image_url='https://nthuagent.pages.dev/bus/maincampus/1.jpg'
+        original_content_url="https://nthuagent.pages.dev/bus/maincampus/1.jpg",
+        preview_image_url="https://nthuagent.pages.dev/bus/maincampus/1.jpg",
     )
     img_2_template = ImageSendMessage(
-         original_content_url='https://nthuagent.pages.dev/bus/maincampus/2.jpg', 
-         preview_image_url='https://nthuagent.pages.dev/bus/maincampus/2.jpg'
-     )
+        original_content_url="https://nthuagent.pages.dev/bus/maincampus/2.jpg",
+        preview_image_url="https://nthuagent.pages.dev/bus/maincampus/2.jpg",
+    )
     template_list.append(img_1_template)
     template_list.append(img_2_template)
 
     return template_list
 
-def minor_campus_bus_img(): #南大專車
+
+def minor_campus_bus_img():  # 南大專車
     template_list = []
 
     img_1_template = ImageSendMessage(
-        original_content_url='https://nthuagent.pages.dev/bus/nanda/1.jpg', 
-        preview_image_url='https://nthuagent.pages.dev/bus/nanda/1.jpg'
+        original_content_url="https://nthuagent.pages.dev/bus/nanda/1.jpg",
+        preview_image_url="https://nthuagent.pages.dev/bus/nanda/1.jpg",
     )
     img_2_template = ImageSendMessage(
-        original_content_url='https://nthuagent.pages.dev/bus/nanda/2.jpg', 
-        preview_image_url='https://nthuagent.pages.dev/bus/nanda/2.jpg'
+        original_content_url="https://nthuagent.pages.dev/bus/nanda/2.jpg",
+        preview_image_url="https://nthuagent.pages.dev/bus/nanda/2.jpg",
     )
 
     template_list.append(img_1_template)
@@ -36,14 +38,17 @@ def minor_campus_bus_img(): #南大專車
 
     return template_list
 
-def et_bus_img(): #83路線公車
+
+def et_bus_img():  # 83路線公車
     template_list = []
 
-    text_template = TextSendMessage(text="清華大學校內各站(含清大北校門、第二綜合大樓、生科館/人社院、台積館)不開放校外人下車，乘客如持清大證件可以下車。")
+    text_template = TextSendMessage(
+        text="清華大學校內各站(含清大北校門、第二綜合大樓、生科館/人社院、台積館)不開放校外人下車，乘客如持清大證件可以下車。"
+    )
 
     img_1_template = ImageSendMessage(
-        original_content_url='https://nthuagent.pages.dev/bus/83/1.jpg', 
-        preview_image_url='https://nthuagent.pages.dev/bus/83/1.jpg'
+        original_content_url="https://nthuagent.pages.dev/bus/83/1.jpg",
+        preview_image_url="https://nthuagent.pages.dev/bus/83/1.jpg",
     )
 
     template_list.append(text_template)
@@ -51,114 +56,112 @@ def et_bus_img(): #83路線公車
 
     return template_list
 
-def bus_route_template(): #公車路線清單
+
+def bus_route_template():  # 公車路線清單
     template_list = []
     bus_route_template = TemplateSendMessage(
-        alt_text='公車路線清單',
+        alt_text="公車路線清單",
         template=ButtonsTemplate(
-            title='公車路線',
-            text='請選擇你要查詢的公車路線',
+            title="公車路線",
+            text="請選擇你要查詢的公車路線",
             actions=[
                 URITemplateAction(
-                    label='公車資訊公告',
-                    uri='https://affairs.site.nthu.edu.tw/p/403-1165-1065-1.php?Lang=zh-tw'
+                    label="公車資訊公告",
+                    uri="https://affairs.site.nthu.edu.tw/p/403-1165-1065-1.php?Lang=zh-tw",
                 ),
                 PostbackTemplateAction(
-                    label='校本部公車',
-                    data='source=richmenu&flag=bus&info=main_campus'
+                    label="校本部公車", data="source=richmenu&flag=bus&info=main_campus"
                 ),
                 PostbackTemplateAction(
-                    label='南大專車',
-                    data='source=richmenu&flag=bus&info=minor_campus'
+                    label="南大專車", data="source=richmenu&flag=bus&info=minor_campus"
                 ),
                 PostbackTemplateAction(
-                    label='83路線公車',
-                    data='source=richmenu&flag=bus&info=83_bus'
+                    label="83路線公車", data="source=richmenu&flag=bus&info=83_bus"
                 )
                 # # TODO: 動態校車
                 # PostbackTemplateAction(
                 #     label='校本部校車動態查詢',
                 #     data='source=richmenu&flag=bus&info=dyn_search'
                 # )
-            ]
-        )
+            ],
+        ),
     )
     template_list.append(bus_route_template)
     return template_list
 
+
 # 動態公車: 上車地點
 def dynbus_geton_loc_template():
     dynbus_geton_loc_template = TemplateSendMessage(
-        alt_text='動態上車選單',
+        alt_text="動態上車選單",
         template=CarouselTemplate(
             columns=[
                 CarouselColumn(
-                    title='您要在哪站上車呢？',
-                    text='請選擇您要上車的站名',
+                    title="您要在哪站上車呢？",
+                    text="請選擇您要上車的站名",
                     actions=[
                         PostbackTemplateAction(
-                            label='北校門口',
-                            text='北校門口',
-                            data='source=richmenu&flag=dynbus_geton&info=north_main_gate'
+                            label="北校門口",
+                            text="北校門口",
+                            data="source=richmenu&flag=dynbus_geton&info=north_main_gate",
                         ),
                         PostbackTemplateAction(
-                            label='綜二館',
-                            text='綜二館',
-                            data='source=richmenu&flag=dynbus_geton&info=general_building'
+                            label="綜二館",
+                            text="綜二館",
+                            data="source=richmenu&flag=dynbus_geton&info=general_building",
                         ),
                         PostbackTemplateAction(
-                            label='楓林小徑',
-                            text='楓林小徑',
-                            data='source=richmenu&flag=dynbus_geton&info=maple_path'
+                            label="楓林小徑",
+                            text="楓林小徑",
+                            data="source=richmenu&flag=dynbus_geton&info=maple_path",
                         ),
-                    ]
+                    ],
                 ),
                 CarouselColumn(
-                    title='您要在哪站上車呢？',
-                    text='請選擇您要上車的站名',
+                    title="您要在哪站上車呢？",
+                    text="請選擇您要上車的站名",
                     actions=[
                         PostbackTemplateAction(
-                            label='奕園停車場',
-                            text='奕園停車場',
-                            data='source=richmenu&flag=dynbus_geton&info=yi_pavilion_parking_lot'
+                            label="奕園停車場",
+                            text="奕園停車場",
+                            data="source=richmenu&flag=dynbus_geton&info=yi_pavilion_parking_lot",
                         ),
                         PostbackTemplateAction(
-                            label='南門停車場',
-                            text='南門停車場',
-                            data='source=richmenu&flag=dynbus_geton&info=south_gate_parking_lot'
+                            label="南門停車場",
+                            text="南門停車場",
+                            data="source=richmenu&flag=dynbus_geton&info=south_gate_parking_lot",
                         ),
                         PostbackTemplateAction(
-                            label='人社院',
-                            text='人社院',
-                            data='source=richmenu&flag=dynbus_geton&info=college_of_human_building'
+                            label="人社院",
+                            text="人社院",
+                            data="source=richmenu&flag=dynbus_geton&info=college_of_human_building",
                         ),
-                    ]
+                    ],
                 ),
                 CarouselColumn(
-                    title='您要在哪站上車呢？',
-                    text='請選擇您要上車的站名',
+                    title="您要在哪站上車呢？",
+                    text="請選擇您要上車的站名",
                     actions=[
                         PostbackTemplateAction(
-                            label='台積館',
-                            text='台積館',
-                            data='source=richmenu&flag=dynbus_geton&info=tsmc_building'
+                            label="台積館",
+                            text="台積館",
+                            data="source=richmenu&flag=dynbus_geton&info=tsmc_building",
                         ),
                         PostbackTemplateAction(
-                            label=' ',
-                            text=' ',
-                            data='source=richmenu&flag=none&info=none'
+                            label=" ",
+                            text=" ",
+                            data="source=richmenu&flag=none&info=none",
                         ),
                         PostbackTemplateAction(
-                            label=' ',
-                            text=' ',
-                            data='source=richmenu&flag=none&info=none'
+                            label=" ",
+                            text=" ",
+                            data="source=richmenu&flag=none&info=none",
                         ),
-                    ]
-                )
+                    ],
+                ),
             ]
-        )
+        ),
     )
-
 
     # dynbus_geton_loc_template = TemplateSendMessage(
     #     alt_text='請輸入你的上車站名',
@@ -199,18 +202,19 @@ def dynbus_geton_loc_template():
     # )
     return dynbus_geton_loc_template
 
+
 # 動態公車: 下車地點
 def dynbus_getoff_loc_template(geton_loc):
     getoff_list = busUtil.geton_map_getoff(geton_loc)
 
     actions_template = []
     for item in getoff_list:
-        info = geton_loc + '~' + busUtil.BUS_LOC_MAP_CH[item]
+        info = geton_loc + "~" + busUtil.BUS_LOC_MAP_CH[item]
 
         template = PostbackTemplateAction(
             label=item,
             text=item,
-            data='source=richmenu&flag=dynbus_getoff&info='+info
+            data="source=richmenu&flag=dynbus_getoff&info=" + info,
         )
         actions_template.append(template)
 
@@ -221,32 +225,27 @@ def dynbus_getoff_loc_template(geton_loc):
 
         if len(carousel_actions) == 3:
             carousel_col = CarouselColumn(
-                title='您要在哪站下車呢？',
-                text='請選擇您要下車的站名',
-                actions=carousel_actions
+                title="您要在哪站下車呢？", text="請選擇您要下車的站名", actions=carousel_actions
             )
             carousel_columns.append(carousel_col)
             carousel_actions = []
-            
-    
+
     dynbus_getoff_loc_template = TemplateSendMessage(
-        alt_text='請輸入你的下車站名',
-        template=CarouselTemplate(
-            columns=carousel_columns
-        )
+        alt_text="請輸入你的下車站名", template=CarouselTemplate(columns=carousel_columns)
     )
     return dynbus_getoff_loc_template
+
 
 # 動態公車: flex content
 def dync_result_flex_json_content(geton, getoff, line, arriveTime, waitTime):
     # line色碼
-    bgColor = ''
-    if line == 'red':
-        bgColor = '#EF5350'
-    elif line == 'green':
-        bgColor = '#7CB342'
+    bgColor = ""
+    if line == "red":
+        bgColor = "#EF5350"
+    elif line == "green":
+        bgColor = "#7CB342"
 
-    bubble_json = '''
+    bubble_json = """
     {{
         "type": "bubble",
         "size": "mega",
@@ -485,7 +484,13 @@ def dync_result_flex_json_content(geton, getoff, line, arriveTime, waitTime):
             ]
         }}
         }}
-    '''.format(bgColor=bgColor, geton=geton, getoff=getoff, arriveTime=arriveTime, waitTime=waitTime)
+    """.format(
+        bgColor=bgColor,
+        geton=geton,
+        getoff=getoff,
+        arriveTime=arriveTime,
+        waitTime=waitTime,
+    )
 
     return bubble_json
 
@@ -494,22 +499,28 @@ def dync_result_flex_json_content(geton, getoff, line, arriveTime, waitTime):
 def dync_result_flex_carousel_template(flex_contents):
     # print(flex_contents)
 
-    carousel_json = ''
+    carousel_json = ""
 
     if len(flex_contents) == 1:
-        carousel_json = '''
+        carousel_json = """
             {{
                 "type": "carousel",
                 "contents": [{content}]
             }}
-        '''.format(content=flex_contents[0])
+        """.format(
+            content=flex_contents[0]
+        )
     elif len(flex_contents) == 2:
-        carousel_json = '''
+        carousel_json = """
             {{
                 "type": "carousel",
                 "contents": [{content1}, {content2}]
             }}
-        '''.format(content1=flex_contents[0], content2=str(flex_contents[1]))
+        """.format(
+            content1=flex_contents[0], content2=str(flex_contents[1])
+        )
 
-    flex_message_template = FlexSendMessage(alt_text="動態公車查詢", contents=json.loads(carousel_json))
+    flex_message_template = FlexSendMessage(
+        alt_text="動態公車查詢", contents=json.loads(carousel_json)
+    )
     return flex_message_template

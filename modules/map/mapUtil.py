@@ -1,7 +1,7 @@
-'''
+"""
 這段程式碼定義了一個函數，用於對傳入的地點名稱進行對應並返回其地址、經緯度等相關資訊。
 這些資訊可能會用於地圖或導航應用程式。如果傳入的地點名稱不存在，函數會將其設置為空字串並返回。
-'''
+"""
 
 
 data = {
@@ -92,7 +92,7 @@ data = {
     "人文社會學館": [24.790031, 120.989070],
     "人文社會學院": [24.790031, 120.989070],
     "人社院": [24.790031, 120.989070],
-    "台積館": [24.786815, 120.988265]
+    "台積館": [24.786815, 120.988265],
     "科技管理學院": [24.786815, 120.988265],
     "創新育成大樓": [24.786239, 120.988760],
     "國際產學營運總中心": [24.786239, 120.988760],
@@ -225,6 +225,7 @@ data = {
     "南大校門口": [24.792349, 120.964208],
 }
 
+
 def mapping(location):
     latitude = data.get(location, None)[0]
     longitude = data.get(location, None)[1]
@@ -232,17 +233,19 @@ def mapping(location):
 
     # return map information
     mapInfo = {
-        'isExist': exist,
-        'info': {
-            'title': location,
-            'address': location,
-            'latitude': latitude,
-            'longitude': longitude
+        "isExist": exist,
+        "info": {
+            "title": location,
+            "address": location,
+            "latitude": latitude,
+            "longitude": longitude,
         },
-        'errMsg': None
+        "errMsg": None,
     }
 
     if not exist:
-        mapInfo['errMsg'] = '汪汪，我聽不懂還在學習中。你可以到「選單」→「神奇海螺」→「問題反饋」教我。如果還想再問我問題可以回到「選單」再問一次喔！'
+        mapInfo[
+            "errMsg"
+        ] = "汪汪，我聽不懂還在學習中。你可以到「選單」→「神奇海螺」→「問題反饋」教我。如果還想再問我問題可以回到「選單」再問一次喔！"
 
     return mapInfo
