@@ -9,18 +9,21 @@
 
 class Param:
     def __init__(self, source=None, flag=None, info=None):
-        self.source = source
-        self.flag = flag
-        self.info = info
+        self._source = source
+        self._flag = flag
+        self._info = info
 
-    def get(self, k):
-        if k == "source":
-            return self.source
-        elif k == "flag":
-            return self.flag
-        elif k == "info":
-            return self.info
+    @property
+    def source(self):
+        return self._source
 
+    @property
+    def flag(self):
+        return self._flag
+
+    @property
+    def info(self):
+        return self._info
 
 def parse(data):
     """解析 postback data
@@ -40,4 +43,5 @@ def parse(data):
 
         param_obj[k] = v
 
-    return Param(param_obj["source"], param_obj["flag"], param_obj["info"])
+    return Param(**param_obj)
+

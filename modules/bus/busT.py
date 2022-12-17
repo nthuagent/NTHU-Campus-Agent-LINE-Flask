@@ -490,28 +490,14 @@ def dync_result_flex_json_content(geton, getoff, line, arriveTime, waitTime):
 def dync_result_flex_carousel_template(flex_contents):
     # print(flex_contents)
 
-    carousel_json = ""
+    carousel_json = {"json": "carousel"}
 
     if len(flex_contents) == 1:
-        carousel_json = """
-            {{
-                "type": "carousel",
-                "contents": [{content}]
-            }}
-        """.format(
-            content=flex_contents[0]
-        )
+        carousel_json["contents"] = [flex_contents[0]]
     elif len(flex_contents) == 2:
-        carousel_json = """
-            {{
-                "type": "carousel",
-                "contents": [{content1}, {content2}]
-            }}
-        """.format(
-            content1=flex_contents[0], content2=str(flex_contents[1])
-        )
+        carousel_json["contents"] = [flex_contents[0], str(flex_contents[1])]
 
     flex_message_template = FlexSendMessage(
-        alt_text="動態公車查詢", contents=json.loads(carousel_json)
+        alt_text="動態公車查詢", contents=carousel_json
     )
     return flex_message_template

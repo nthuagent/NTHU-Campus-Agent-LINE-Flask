@@ -7,6 +7,8 @@ from API import AndxAPI, UserAPI, BusAPI, DataAPI
 
 from modules.affair import affairT, recnewsT, recnewUtil, stopT, phoneT, epidemicT
 from modules.funtions import introT
+from modules.joke import jokeT
+from modules.data import dataT
 
 
 class PostbackHandler:
@@ -18,31 +20,17 @@ class PostbackHandler:
         user_id = event.source.user_id
         reply_token = event.reply_token
 
-        user = UserAPI()
-        _data = DataAPI()
+        flag = param.flag
+        source = param.source
+        info = param.info
 
-        if param.get("flag") == "epidemic":
-            if param.get("info") == "qa":
+        if flag == "epidemic":
+            if info == "qa":
                 self.line_bot_api.reply_message(reply_token, epidemicT.qa_info())
                 self.user.setFlag(user_id, "epidemic_qa")
-            if param.get("info") == "students":
-                epid_content, err = _data.getEpid("students")
-                if err:
-                    self.line_bot_api.reply_message(
-                        reply_token,
-                        TextSendMessage(text="取得防疫資訊失敗 嗷嗷qq。你可以透過意見回饋讓情報團隊了解情況！"),
-                    )
-                else:
-                    self.line_bot_api.reply_message(
-                        reply_token, epidemicT.students_carousel_render(epid_content)
-                    )
-                    # self.line_bot_api.reply_message(reply_token, epidemicT.students_info())
-
-            # 屬於純text的防疫category
             else:
-                epid_category = param.get("info")
-                epid_content, err = _data.getEpid(epid_category)
-                if err:
+                epid_content = dataT.get_epid(info)
+                if not epid_content:
                     self.line_bot_api.reply_message(
                         reply_token,
                         TextSendMessage(text="取得防疫資訊失敗 嗷嗷qq。你可以透過意見回饋讓情報團隊了解情況！"),
@@ -69,15 +57,15 @@ class PostbackHandler:
             # elif param.get('info') == 'contact':
             #     self.line_bot_api.reply_message(reply_token, epidemicT.contact_info())
 
-        elif param.get("flag") == "affair":
-            if param.get("info") == "qa":
+        elif flag == "affair":
+            if info == "qa":
                 self.line_bot_api.reply_message(reply_token, affairT.qa_info())
                 self.user.setFlag(user_id, "affair_qa")
-            elif param.get("info") == "recnews":
+            elif info == "recnews":
                 self.line_bot_api.reply_message(reply_token, affairT.recNew_type())
-            elif param.get("info") == "speech":
-                recnews, err = _data.getrecNews("speech")
-                if err:
+            elif info == "speech":
+                recnews= dataT.get_rec_news("speech")
+                if recnews == None:
                     self.line_bot_api.reply_message(
                         reply_token,
                         TextSendMessage(text="取得活動資訊失敗 嗷嗷qq。你可以透過意見回饋讓情報團隊了解情況！"),
@@ -91,9 +79,9 @@ class PostbackHandler:
                     self.line_bot_api.reply_message(
                         reply_token, recnewsT.recnew_carousel(news)
                     )
-            elif param.get("info") == "exhibition":
-                recnews, err = _data.getrecNews("exhibition")
-                if err:
+            elif info == "exhibition":
+                recnews = dataT.get_rec_news("exhibition")
+                if recnews == None:
                     self.line_bot_api.reply_message(
                         reply_token,
                         TextSendMessage(text="取得活動資訊失敗 嗷嗷qq。你可以透過意見回饋讓情報團隊了解情況！"),
@@ -107,9 +95,9 @@ class PostbackHandler:
                     self.line_bot_api.reply_message(
                         reply_token, recnewsT.recnew_carousel(news)
                     )
-            elif param.get("info") == "activity":
-                recnews, err = _data.getrecNews("activity")
-                if err:
+            elif info == "activity":
+                recnews = dataT.getrecNews("activity")
+                if err == None:
                     self.line_bot_api.reply_message(
                         reply_token,
                         TextSendMessage(text="取得活動資訊失敗 嗷嗷qq。你可以透過意見回饋讓情報團隊了解情況！"),
@@ -123,11 +111,11 @@ class PostbackHandler:
                     self.line_bot_api.reply_message(
                         reply_token, recnewsT.recnew_carousel(news)
                     )
-            elif param.get("info") == "phone":
+            elif info == "phone":
                 self.line_bot_api.reply_message(reply_token, phoneT.qa_info())
                 self.user.setFlag(user_id, "phone_qa")
-        elif param.get("flag") == "commands":
-            if param.get("info") == "share":
+        elif flag == "commands":
+            if info == "share":
                 self.line_bot_api.reply_message(
                     reply_token,
                     FlexSendMessage(
@@ -135,10 +123,9 @@ class PostbackHandler:
                         contents=json.loads(introT.share_template()),
                     ),
                 )
-            elif param.get("info") == "newjoke":
-                andx = AndxAPI()
-                anecdote, err = andx.getOne()
-                if err:
+            elif info == "newjoke":
+                anecdote = get_joke()
+                if not anecdote:
                     # 沒笑話
                     self.line_bot_api.reply_message(
                         reply_token, TextSendMessage(text="沒找到笑話")
@@ -148,12 +135,12 @@ class PostbackHandler:
                     self.line_bot_api.reply_message(
                         reply_token, TextSendMessage(text=anecdote)
                     )
-            elif param.get("info") == "addjoke":
+            elif info == "addjoke":
                 self.line_bot_api.reply_message(
                     reply_token, TextSendMessage(text="說吧！有什麼笑話這麼好笑？")
                 )
                 self.user.setFlag(user_id, "andx_insert")
-            elif param.get("info") == "feedback":
+            elif info == "feedback":
                 self.line_bot_api.reply_message(
                     reply_token, TextSendMessage(text="你有什麼意見或問題呢？告訴本汪，盡快為你處理！")
                 )
