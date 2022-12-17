@@ -64,7 +64,7 @@ class PostbackHandler:
             elif info == "recnews":
                 self.line_bot_api.reply_message(reply_token, affairT.recNew_type())
             elif info == "speech":
-                recnews= dataT.get_rec_news("speech")
+                recnews = dataT.get_rec_news("speech")
                 if recnews == None:
                     self.line_bot_api.reply_message(
                         reply_token,

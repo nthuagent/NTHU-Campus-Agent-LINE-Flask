@@ -44,9 +44,6 @@ def personal_intro(item):
     return QuickReply_text_message
 
 
-import random
-
-
 def create_location_list(location):
     item = []
     location_list = []

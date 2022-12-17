@@ -25,6 +25,7 @@ class Param:
     def info(self):
         return self._info
 
+
 def parse(data):
     """解析 postback data
     Params:
@@ -44,4 +45,3 @@ def parse(data):
         param_obj[k] = v
 
     return Param(**param_obj)
-

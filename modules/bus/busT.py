@@ -3,13 +3,13 @@ from linebot.models import *
 from modules.bus import busUtil
 
 
-def handle_menu(self, reply_token, em):
+def handle_menu(em):
     if em == "校本部公車":
-        self.line_bot_api.reply_message(reply_token, main_campus_bus_img())
+        return main_campus_bus_img()
     elif em == "南大專車":
-        self.line_bot_api.reply_message(reply_token, main_campus_bus_img())
+        return main_campus_bus_img()
     elif em == "83路線公車":
-        self.line_bot_api.reply_message(reply_token, main_campus_bus_img())
+        return main_campus_bus_img()
 
 
 def main_campus_bus_img():  # 校本部公車
@@ -497,7 +497,5 @@ def dync_result_flex_carousel_template(flex_contents):
     elif len(flex_contents) == 2:
         carousel_json["contents"] = [flex_contents[0], str(flex_contents[1])]
 
-    flex_message_template = FlexSendMessage(
-        alt_text="動態公車查詢", contents=carousel_json
-    )
+    flex_message_template = FlexSendMessage(alt_text="動態公車查詢", contents=carousel_json)
     return flex_message_template

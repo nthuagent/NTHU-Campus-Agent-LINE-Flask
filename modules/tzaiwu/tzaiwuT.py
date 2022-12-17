@@ -2,11 +2,11 @@ from linebot.models import *
 from app.handler.richmenu import *
 
 
-def handle_menu(self, reply_token, em):
+def handle_menu(em):
     if em == "借用設備與空間":
-        self.line_bot_api.reply_message(reply_token, tzaiwu_space())
+        return tzaiwu_space()
     elif em == "修繕設備與空間":
-        self.line_bot_api.reply_message(reply_token, tzaiwu_fix())
+        return tzaiwu_fix()
 
 
 def tzaiwu_intro():

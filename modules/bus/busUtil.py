@@ -68,14 +68,12 @@ def check_direction_and_line(geton, getoff):
             proper_route_key.append(k)
 
     # 整理方向 及 line
-    direction = ""
-    line = []
+    lines = []
     for k in proper_route_key:
         k_list = k.split("_")
-        l = k_list[0]  # line
-        d = k_list[1]  # direction
+        line = k_list[0]
+        direction = k_list[1]
 
-        line.append(l)
-        direction = d
+        lines.append(line)
 
-    return direction, line
+    return direction, lines

@@ -112,16 +112,16 @@ class RichmenuHandler:
                 self.line_bot_api.reply_message(reply_token, demoT.demoT_intro())
 
         elif menu == "[公車]":
-            return busT.handle_menu(self, reply_token, em)
+            self.line_bot_api.reply_message(reply_token, busT.handle_menu(em))
 
         elif menu == "[載物]":
-            return tzaiwuT.handle_menu(self, reply_token, em)
+            self.line_bot_api.reply_message(reply_token, tzaiwuT.handle_menu(em))
 
         elif menu == "[娛樂]":
-            return randomT.handle_menu(self, reply_token, em)
+            self.line_bot_api.reply_message(reply_token, demoT.handle_menu(em))
 
         elif menu == "[示範]":
-            return demoT.handle_menu(self, reply_token, em)
+            self.line_bot_api.reply_message(reply_token, demoT.handle_menu(em))
 
         # elif em == "新型冠狀病毒相關公告":
         #     self.line_bot_api.reply_message(reply_token, epidemicT.epidemic_info_carousel())
