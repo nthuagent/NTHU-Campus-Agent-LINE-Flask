@@ -2,10 +2,11 @@ from datetime import datetime
 from linebot.models import *
 
 import json
-from app import app
-from API import AndxAPI, UserAPI, BusAPI, DataAPI
+from API import AndxAPI, UserAPI, DataAPI
 
-from modules.affair import affairT, recnewsT, recnewUtil, stopT, phoneT, epidemicT
+from modules.affair import affairT, epidemicT
+from modules.affair.recnews import recnewsT, recnewUtil
+from modules.affair.phone import phoneT
 from modules.funtions import introT
 
 

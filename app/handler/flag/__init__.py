@@ -11,10 +11,10 @@ import json
 
 from API import AndxAPI, FeedbackAPI, PhoneAPI, UserAPI
 from modules.map import mapUtil
-from modules.affair import phoneT
-from modules.affair.template import EpidemicQATemplate, AffairQATemplate
-from modules.affair.qa_engine.engine import QA_Engine
-from modules.affair.qa_engine.phone_engine import Phone_Engine
+from modules.affair.phone import phoneT
+from modules.affair.qa.template import EpidemicQATemplate, AffairQATemplate
+from modules.affair.qa.qa_engine.engine import QA_Engine
+from modules.affair.qa.qa_engine.phone_engine import Phone_Engine
 
 
 class FlagHandler():

@@ -1,6 +1,5 @@
 ''' Chatbot command  '''
 import os
-from modules.affair import qa_engine
 import openai
 #from revChatGPT.revChatGPT import Chatbot
 from linebot.models import *
