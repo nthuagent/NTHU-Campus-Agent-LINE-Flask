@@ -1,12 +1,12 @@
 """ Chatbot command  """
 import os
-from modules.affair import qa_engine
 import openai
 
 # from revChatGPT.revChatGPT import Chatbot
 from linebot.models import *
-from app import app
+from modules.tzaiwu import tzaiwuT
 from dotenv import load_dotenv
+from modules.tzaiwu import tzaiwuT
 
 load_dotenv()
 
@@ -62,8 +62,10 @@ class CmdHandler:
         if msg == "!" or msg == "！":
             self.line_bot_api.reply_message(
                 event.reply_token, TextSendMessage(text="在你要打的句子面前加上驚嘆號 (！)，就能召喚神奇海螺囉")
-            )
-        # 執行 cmd
+            )  
+        elif msg =="!載物書院":
+            self.line_bot_api.reply_message(event.reply_token,tzaiwuT.tzaiwu_intro())
+        # 執行 cmd    
         else:
             # user_message = event.message.text
             # print(user_message)
