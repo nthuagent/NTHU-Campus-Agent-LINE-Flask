@@ -1,124 +1,125 @@
 from linebot.models import *
 
+
 def affair_info_carousel():
-    carousel_template = TemplateSendMessage(        
-        alt_text = '讓狗狗情報員來告訴你校園防疫資訊！',
-        template = CarouselTemplate(  
-            columns = [
+    carousel_template = TemplateSendMessage(
+        alt_text="讓狗狗情報員來告訴你校園防疫資訊！",
+        template=CarouselTemplate(
+            columns=[
                 CarouselColumn(
-                    title = '校園電話查詢',
-                    text = '點擊「查詢電話」輸入校園單位，本汪可以直接告訴你喔！',
-                    actions = [
+                    title="校園電話查詢",
+                    text="點擊「查詢電話」輸入校園單位，本汪可以直接告訴你喔！",
+                    actions=[
                         PostbackAction(
-                            label='查詢電話',
-                            data='source=richmenu&flag=affair&info=phone'
+                            label="查詢電話", data="source=richmenu&flag=affair&info=phone"
                         )
-                    ]
+                    ],
                 ),
                 CarouselColumn(
-                    title = '校園活動資訊',
-                    text = '點擊「更多資訊」，本汪可以直接告訴你喔！',
-                    actions = [
+                    title="校園活動資訊",
+                    text="點擊「更多資訊」，本汪可以直接告訴你喔！",
+                    actions=[
                         PostbackAction(
-                            label='更多資訊',
-                            data='source=richmenu&flag=affair&info=recnews'
+                            label="更多資訊",
+                            data="source=richmenu&flag=affair&info=recnews",
                         )
-                    ]
+                    ],
                 ),
                 CarouselColumn(
-                    title = '校務Q&A',
-                    text = '點擊「我要提問」輸入想問的校務問題，本汪可以直接告訴你喔！',
-                    actions = [
+                    title="校務Q&A",
+                    text="點擊「我要提問」輸入想問的校務問題，本汪可以直接告訴你喔！",
+                    actions=[
                         PostbackAction(
-                            label='我要提問',
-                            data='source=richmenu&flag=affair&info=qa'
+                            label="我要提問", data="source=richmenu&flag=affair&info=qa"
                         )
-                    ]
+                    ],
                 ),
                 CarouselColumn(
-                    title = '111學年度行事曆',
-                    text = '點擊「最新版本」開啟行事曆',
-                    actions = [
+                    title="111學年度行事曆",
+                    text="點擊「最新版本」開啟行事曆",
+                    actions=[
                         URIAction(
-                            label = '最新版本',
-                            uri = 'https://nthuagent.pages.dev/calendar/111/zh.pdf'
+                            label="最新版本",
+                            uri="https://nthuagent.pages.dev/calendar/111/zh.pdf",
                         )
-                        #URITemplateAction(
+                        # URITemplateAction(
                         #    label = 'English Version',
                         #    uri = 'https://nthuagent.pages.dev/calendar/111/en.pdf'
-                        #)
-                    ]
-                )
+                        # )
+                    ],
+                ),
             ]
-        )
+        ),
     )
     return carousel_template
+
 
 def recNew_type():
 
     buttons_template = TemplateSendMessage(
-        alt_text='查詢活動類型',
+        alt_text="查詢活動類型",
         template=ButtonsTemplate(
-            title='查詢活動類型',
-            text='請選擇你想查詢的活動類型',
+            title="查詢活動類型",
+            text="請選擇你想查詢的活動類型",
             actions=[
                 PostbackTemplateAction(
-                    label='演講訊息',
-                    text='演講訊息',
-                    data='source=richmenu&flag=affair&info=speech'
+                    label="演講訊息",
+                    text="演講訊息",
+                    data="source=richmenu&flag=affair&info=speech",
                 ),
                 PostbackTemplateAction(
-                    label='藝術展覽',
-                    text='藝術展覽',
-                    data='source=richmenu&flag=affair&info=exhibition'
+                    label="藝術展覽",
+                    text="藝術展覽",
+                    data="source=richmenu&flag=affair&info=exhibition",
                 ),
                 PostbackTemplateAction(
-                    label='各類活動',
-                    text='各類活動',
-                    data='source=richmenu&flag=affair&info=activity'
-                )
-            ]
-        )
+                    label="各類活動",
+                    text="各類活動",
+                    data="source=richmenu&flag=affair&info=activity",
+                ),
+            ],
+        ),
     )
     return buttons_template
 
+
 def qa_info():
-    '''校務Q&A'''
+    """校務Q&A"""
     QuickReply_text_message = TextSendMessage(
-        text = '請問想詢問什麼校務資訊呢？',
-        quick_reply = QuickReply(
-            items = [
+        text="請問想詢問什麼校務資訊呢？",
+        quick_reply=QuickReply(
+            items=[
                 QuickReplyButton(
-                    action = MessageAction(label = "查詢場地使用狀況/我想借場地", text = "查詢場地使用狀況/我想借場地"),
+                    action=MessageAction(label="查詢場地使用狀況/我想借場地", text="查詢場地使用狀況/我想借場地"),
                 ),
                 QuickReplyButton(
-                    action = MessageAction(label = "怎麼申請交換", text = "怎麼申請交換"),
+                    action=MessageAction(label="怎麼申請交換", text="怎麼申請交換"),
                 ),
                 QuickReplyButton(
-                    action = MessageAction(label = "運動場地如何申請/租借/借用", text = "運動場地如何申請/租借/借用"),
+                    action=MessageAction(label="運動場地如何申請/租借/借用", text="運動場地如何申請/租借/借用"),
                 ),
                 QuickReplyButton(
-                    action = MessageAction(label = "怎麼申請獎學金", text = "怎麼申請獎學金"),
+                    action=MessageAction(label="怎麼申請獎學金", text="怎麼申請獎學金"),
                 ),
                 QuickReplyButton(
-                    action = MessageAction(label = "學分學程資訊查詢", text = "學分學程資訊查詢"),
+                    action=MessageAction(label="學分學程資訊查詢", text="學分學程資訊查詢"),
                 ),
                 QuickReplyButton(
-                    action = MessageAction(label = "校際選課的規定有哪些", text = "校際選課的規定有哪些"),
+                    action=MessageAction(label="校際選課的規定有哪些", text="校際選課的規定有哪些"),
                 ),
                 QuickReplyButton(
-                    action = MessageAction(label = "宿舍使用的規定", text = "宿舍使用的規定"),
+                    action=MessageAction(label="宿舍使用的規定", text="宿舍使用的規定"),
                 ),
                 QuickReplyButton(
-                    action = MessageAction(label = "怎麼申請海外姊妹校交換？", text = "怎麼申請海外姊妹校交換？"),
+                    action=MessageAction(label="怎麼申請海外姊妹校交換？", text="怎麼申請海外姊妹校交換？"),
                 ),
                 QuickReplyButton(
-                    action = MessageAction(label = "如何申請雙主修？", text = "如何申請雙主修？"),
+                    action=MessageAction(label="如何申請雙主修？", text="如何申請雙主修？"),
                 ),
                 QuickReplyButton(
-                    action = MessageAction(label = "如何申請輔系？", text = "如何申請輔系？"),
-                )
+                    action=MessageAction(label="如何申請輔系？", text="如何申請輔系？"),
+                ),
             ]
-        )
+        ),
     )
     return QuickReply_text_message
