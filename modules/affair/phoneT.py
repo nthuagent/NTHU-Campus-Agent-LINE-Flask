@@ -1,31 +1,33 @@
 from linebot.models import *
 
+
 def qa_info():
-    '''校園電話Q&A'''
+    """校園電話Q&A"""
     QuickReply_text_message = TextSendMessage(
-        text = '請輸入想要查詢的單位名稱',
-        quick_reply = QuickReply(
-            items = [
+        text="請輸入想要查詢的單位名稱",
+        quick_reply=QuickReply(
+            items=[
                 QuickReplyButton(
-                    image_url='https://i.imgur.com/szzgMji.png',
-                    action = MessageAction(label = "校安中心", text = "校安中心"),
+                    image_url="https://i.imgur.com/szzgMji.png",
+                    action=MessageAction(label="校安中心", text="校安中心"),
                 ),
                 QuickReplyButton(
-                    image_url='https://i.imgur.com/lwoIwZa.png',
-                    action = MessageAction(label = "駐衛警察隊", text = "駐衛警察隊"),
+                    image_url="https://i.imgur.com/lwoIwZa.png",
+                    action=MessageAction(label="駐衛警察隊", text="駐衛警察隊"),
                 ),
                 # QuickReplyButton(
                 #     image_url='https://i.imgur.com/7wGbjZJ.png',
                 #     action = MessageAction(label = "清華總機", text = "清華總機"),
                 # )
             ]
-        )
+        ),
     )
     return QuickReply_text_message
 
+
 def unit_phone_carousel(name, phone):
 
-    bubble_json = '''
+    bubble_json = """
     {{
     "type": "bubble",
     "body": {{
@@ -80,6 +82,8 @@ def unit_phone_carousel(name, phone):
         ]
         }}
     }}
-    '''.format(name = name, phone = phone)
+    """.format(
+        name=name, phone=phone
+    )
 
     return bubble_json
