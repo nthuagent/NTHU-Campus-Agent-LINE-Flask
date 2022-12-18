@@ -1,5 +1,6 @@
 from API import DataAPI, PhoneAPI
 
+
 def data_loader(category):
     result = []
 
@@ -9,8 +10,9 @@ def data_loader(category):
     if err:
         print(err)
         return
-    
+
     return result
+
 
 def phone_list_loader():
     result = []
@@ -21,5 +23,5 @@ def phone_list_loader():
     if err:
         print(err)
         return
-    
+
     return result

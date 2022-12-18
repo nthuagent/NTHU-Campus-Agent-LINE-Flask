@@ -1,7 +1,9 @@
 from linebot.models import *
 
+
 def guidance():
-    text_template = TextSendMessage(text='''🔊🔊🔊狗狗情報員互動指南🔊🔊🔊
+    text_template = TextSendMessage(
+        text="""🔊🔊🔊狗狗情報員互動指南🔊🔊🔊
 
 武漢肺炎延燒，防疫怎麼辦：
 請點選單「新型冠狀病毒相關公告」，防疫資訊狗狗告訴你
@@ -22,6 +24,7 @@ def guidance():
 2⃣笑一下：聽聽笑話不無聊，聽完又是一條好漢
 3⃣新增笑話：有什麼八卦告訴狗狗，讓大家也笑一笑吧！
 4⃣疫情相關提問：防疫資訊哪裡不足告訴狗狗，本汪為你盡快取得協助
-    ''')
+    """
+    )
 
     return text_template
