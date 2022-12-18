@@ -118,7 +118,7 @@ class RichmenuHandler:
             self.line_bot_api.reply_message(reply_token, tzaiwuT.handle_menu(em))
 
         elif menu == "[娛樂]":
-            self.line_bot_api.reply_message(reply_token, demoT.handle_menu(em))
+            self.line_bot_api.reply_message(reply_token, TextSendMessage(text=randomT.handle_menu(em)))
 
         elif menu == "[示範]":
             self.line_bot_api.reply_message(reply_token, demoT.handle_menu(em))
